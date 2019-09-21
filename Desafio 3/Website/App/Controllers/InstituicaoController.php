@@ -10,6 +10,8 @@ class InstituicaoController extends Action
 {
 	public function instituicao()
 	{
+		$instituicao = Container::getModel('Instituicao');
+		$this->view->instituicao = $instituicao->getInstituicoes();
 		$this->render('instituicao', 'layout');
 	}
 
@@ -23,11 +25,37 @@ class InstituicaoController extends Action
 		$cnpj = str_replace("/", "", $cnpj);
 		$cnpj = str_replace("-", "", $cnpj);
 
+		//seta a classe instituicao
+		$instituicao->__set('nome', $_POST['instituicaoNome']);
+		$instituicao->__set('cnpj', $cnpj);
+
+		//verifica se o status eh ativado ou desativado
+		if (!isset($_POST['instituicaoStatus']))
+			$instituicao->__set('status', 0);
+		else
+			$instituicao->__set('status', 1);
+
+		session_start();
 		//verifica se a instituicao ja esta cadastrada
-		if (!$instituicao->instituicaoVerificar()) {
-			print_r("eh null");
+		if ($instituicao->instituicaoVerificar() != '') {
+			$_SESSION["mensagem"] = $this->msgErro('Instituição já cadastrada!');
+			header("Location: /instituicao");
+		} else {
+			$instituicao->instituicaoCadastrar();
+			$_SESSION["mensagem"] = $this->msgSucesso();
 			header("Location: /instituicao");
 		}
+	}
+
+	public function instituicaoAlterar()
+	{
+		$instituicao = Container::getModel('Instituicao');
+
+		//remove caracteres especiais do cnpj
+		$cnpj = $_POST['instituicaoCnpjAnterior'];
+		$cnpj = str_replace(".", "", $cnpj);
+		$cnpj = str_replace("/", "", $cnpj);
+		$cnpj = str_replace("-", "", $cnpj);
 
 		//seta a classe instituicao
 		$instituicao->__set('nome', $_POST['instituicaoNome']);
@@ -41,14 +69,25 @@ class InstituicaoController extends Action
 
 		session_start();
 		//verifica se a instituicao ja esta cadastrada
-		if ($instituicao->instituicaoVerificar() != ''){
-			$_SESSION["mensagem"] = $this->cadastroErro('Instituição já cadastrada!');
+		if ($instituicao->instituicaoVerificar('nome') != '') {
+			$_SESSION["mensagem"] = $this->msgErro('Instituição já cadastrada, não é possível alterar!');
 			header("Location: /instituicao");
 		} else {
-			$instituicao->instituicaoCadastrar();
-			$_SESSION["mensagem"] = $this->cadastroSucesso();
+			$instituicao->instituicaoAlterar();
+			$_SESSION["mensagem"] = $this->msgSucesso('alterada');
 			header("Location: /instituicao");
 		}
+	}
+
+	public function instituicaoDeletar()
+	{
+		$instituicao = Container::getModel('Instituicao');
+		$instituicao->__set('cnpj', $_POST['instituicaoDeletar']);
+		$instituicao->instituicaoDeletar();
+
+		session_start();
+		$_SESSION["mensagem"] = $this->msgSucesso('deletada');
+		header("Location: /instituicao");
 	}
 
 	/* Modal de alerta */
@@ -75,7 +114,7 @@ class InstituicaoController extends Action
 		return $mensagem;
 	}
 
-	public function cadastroErro($msgAlerta = '')
+	public function msgErro($msgAlerta = '')
 	{
 		$mensagem = $this->modal();
 		$mensagem = str_replace("[modalTipo]", "modal-erro", $mensagem);
@@ -86,12 +125,12 @@ class InstituicaoController extends Action
 		return $mensagem;
 	}
 
-	public function cadastroSucesso()
+	public function msgSucesso($param = 'cadastrada')
 	{
 		$mensagem = $this->modal();
 		$mensagem = str_replace("[modalTipo]", "modal-sucesso", $mensagem);
 		$mensagem = str_replace("[modalIcone]", "&#xE876;", $mensagem);
-		$mensagem = str_replace("[modalTitulo]", "Instituição cadastrada com sucesso!", $mensagem);
+		$mensagem = str_replace("[modalTitulo]", "Instituição ".$param." com sucesso!", $mensagem);
 		$mensagem = str_replace("[modalMensagem]", "", $mensagem);
 		$mensagem = str_replace("[modalBtn]", "btn-danger", $mensagem);
 		return $mensagem;

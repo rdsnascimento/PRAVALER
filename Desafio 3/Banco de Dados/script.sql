@@ -15,7 +15,7 @@ CREATE TABLE Instituicao (
 );
 
 CREATE TABLE Curso (
-    idCurso tinyint,
+    idCurso tinyint AUTO_INCREMENT,
     nome varchar(64),
     duracao tinyint,
     status tinyint(1),

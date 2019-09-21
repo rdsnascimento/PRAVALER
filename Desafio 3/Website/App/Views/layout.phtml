@@ -1,6 +1,6 @@
 <?php
 session_start();
-?> 
+?>
 
 <!DOCTYPE html>
 <html>
@@ -37,7 +37,7 @@ session_start();
             <div class="sidebar-heading"><a href="/">SGIE</a></div>
             <div class="list-group list-group-flush">
                 <a href="/instituicao" class="list-group-item list-group-item-action bg-light">Instituição</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light">Curso</a>
+                <a href="/curso" class="list-group-item list-group-item-action bg-light">Curso</a>
                 <a href="#" class="list-group-item list-group-item-action bg-light">Alunos</a>
             </div>
         </div>
@@ -45,6 +45,29 @@ session_start();
 
         <!-- Conteudo da pagina -->
         <div id="page-content-wrapper">
+            <nav class="navbar navbar-expand-lg navbar-light bd-navbar border-bottom">
+                <button class="btn btnOcultar" id="menu-toggle">Ocultar</button>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarPrincipal" aria-controls="navbarPrincipal" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-center" id="navbarPrincipal">
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#abaListar">Listar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#abaCadastrar">Cadastrar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#abaAlterar">Alterar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#abaDeletar">Deletar</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
             <?= $this->content() ?>
         </div>
         <!-- fim conteudo da pagina -->
@@ -53,6 +76,8 @@ session_start();
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="public/assets/js/script.js"></script>
+    <script src="public/assets/js/pgInstituicao.js"></script>
+    <script src="public/assets/js/pgCurso.js"></script>
 
     <!-- validar campos -->
     <script src="public/assets/js/jquery.mask.min.js"></script>

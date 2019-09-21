@@ -16,8 +16,12 @@ class Instituicao extends Model {
         $this->$atributo = $valor;
     }
 
-    public function instituicaoVerificar(){
-        $query = "select * from instituicao where cnpj = :cnpj or nome = :nome";
+    public function instituicaoVerificar($param = ''){
+        if($param == 'nome') //verifica apenas o nome
+            $query = "select * from instituicao where nome = :nome"; 
+        else //verifica nome e cnpj
+            $query = "select * from instituicao where cnpj = :cnpj or nome = :nome";
+            
         $stmt = $this->db->prepare($query);
         $stmt->bindValue(':cnpj', $this->__get('cnpj'));
         $stmt->bindValue(':nome', $this->__get('nome'));
@@ -33,5 +37,35 @@ class Instituicao extends Model {
         $stmt->bindValue(':status', $this->__get('status'));
         $stmt->execute();
         return $this;
+    }
+
+    public function instituicaoAlterar(){
+        $query = "update Instituicao set status = :status, nome = :nome where cnpj = :cnpj";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':cnpj', $this->__get('cnpj'));
+        $stmt->bindValue(':nome', $this->__get('nome'));
+        $stmt->bindValue(':status', $this->__get('status'));
+        $stmt->execute();
+    }
+
+    public function instituicaoDeletar(){
+        $query = "delete from Instituicao where cnpj = :cnpj";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':cnpj', $this->__get('cnpj'));
+        $stmt->execute();
+    }
+
+    public function getInstituicoes(){
+        $query = "select * from Instituicao";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public function getInstituicoesAtivas(){
+        $query = "select * from Instituicao where status = 0";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC); 
     }
 }

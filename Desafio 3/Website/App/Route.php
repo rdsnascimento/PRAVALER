@@ -26,6 +26,36 @@ class Route extends Bootstrap {
 			'action' => 'instituicaoCadastrar'
 		);
 
+		$routes['instituicaoAlterar'] = array(
+			'route' => '/instituicaoAlterar',
+			'controller' => 'instituicaoController',
+			'action' => 'instituicaoAlterar'
+		);
+
+		$routes['instituicaoDeletar'] = array(
+			'route' => '/instituicaoDeletar',
+			'controller' => 'instituicaoController',
+			'action' => 'instituicaoDeletar'
+		);
+
+		$routes['curso'] = array(
+			'route' => '/curso',
+			'controller' => 'cursoController',
+			'action' => 'curso'
+		);
+
+		$routes['cursoCadastrar'] = array(
+			'route' => '/cursoCadastrar',
+			'controller' => 'cursoController',
+			'action' => 'cursoCadastrar'
+		);
+
+		$routes['cursoListar'] = array(
+			'route' => '/cursoListar',
+			'controller' => 'cursoController',
+			'action' => 'cursoListar'
+		);
+
 		$this->setRoutes($routes);
 	}
 

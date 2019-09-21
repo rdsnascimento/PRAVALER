@@ -233,3 +233,15 @@ body{
 #btnCadastrarInstituicao{
   margin-top: 10%;
 }
+
+#btnAlterarInstituicao, #btnDeletarInstituicao, #btnCadastrarCurso{
+  margin: 16% 0;
+}
+
+#cursoListarResultado{
+  font-size: 16px; 
+  background-color: #e9ecef; 
+  padding: 15px; 
+  border-radius: 5px; 
+  display: none
+}
