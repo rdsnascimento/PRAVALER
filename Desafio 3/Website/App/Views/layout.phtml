@@ -1,0 +1,63 @@
+<?php
+session_start();
+?> 
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>SGIE</title>
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="public/assets/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+
+<body>
+    <!-- Se tiver mensagem para exibir -->
+    <?php
+    if (isset($_SESSION["mensagem"])) {
+        print_r($_SESSION["mensagem"]);
+        ?>
+        <script>
+            window.onload = function() {
+                $('#modalMensagem').modal();
+            }
+        </script>
+    <?php
+        $_SESSION["mensagem"] = "";
+    }
+    ?>
+
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar -->
+        <div class="bg-light border-right" id="sidebar">
+            <div class="sidebar-heading"><a href="/">SGIE</a></div>
+            <div class="list-group list-group-flush">
+                <a href="/instituicao" class="list-group-item list-group-item-action bg-light">Instituição</a>
+                <a href="#" class="list-group-item list-group-item-action bg-light">Curso</a>
+                <a href="#" class="list-group-item list-group-item-action bg-light">Alunos</a>
+            </div>
+        </div>
+        <!-- fim sidebar -->
+
+        <!-- Conteudo da pagina -->
+        <div id="page-content-wrapper">
+            <?= $this->content() ?>
+        </div>
+        <!-- fim conteudo da pagina -->
+    </div>
+
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="public/assets/js/script.js"></script>
+
+    <!-- validar campos -->
+    <script src="public/assets/js/jquery.mask.min.js"></script>
+    <script src="public/assets/js/jquery.mask.config.js"></script>
+    <script src="public/assets/js/jquery.scripts.config.js"></script>
+</body>
+
+</html>

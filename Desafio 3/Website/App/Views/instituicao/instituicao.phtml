@@ -1,0 +1,108 @@
+<nav class="navbar navbar-expand-lg navbar-light bd-navbar border-bottom">
+    <button class="btn btnOcultar" id="menu-toggle">Ocultar</button>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarPrincipal" aria-controls="navbarPrincipal" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-center" id="navbarPrincipal">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#abaListar">Listar</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#abaCadastrar">Cadastrar</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#abaAlterar">Alterar</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#abaDeletar">Deletar</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="tab-content">
+
+    <div class="tab-pane" id="abaListar" role="tabpanel">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <div style="font-size: 14px; margin-top:10px">Listar instituições</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-pane active" id="abaCadastrar" role="tabpanel">
+        <div class="row">
+            <div class="col-md-8 ml-auto mr-auto">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h5 class="card-title">
+                            Cadastrar instituição
+                        </h5>
+                        <sup>Cadastre uma nova instituição nos campos abaixo</sup>
+                    </div>
+
+                    <div class="card-body">
+                        <form class="needs-validation" action="/instituicaoCadastrar" method="post" enctype="multipart/form-data" id="cadastrarInstituicao" novalidate="">
+                            <div class="row">
+                                <div class="col-md-5 col-6">
+                                    <div class="form-group">
+                                        <label>Nome da Instituição</label>
+                                        <input id="instituicaoNome" name="instituicaoNome" type="text" class="form-control" placeholder="Digite o nome da instituição" autocomplete="off" value="" required>
+                                        <div class="invalid-feedback">
+                                            Insira um nome de instituição válido
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-6">
+                                    <div class="form-group">
+                                        <label>CNPJ</label>
+                                        <input id="instituicaoCNPJ" name="instituicaoCnpj" type="text" class="form-control cnpj" placeholder="__.___.___/____-__" maxlength="14" autocomplete="off" required>
+                                        <div class="invalid-feedback">
+                                            Insira um CNPJ válido
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3 col-12">
+                                    <div class="form-group">
+                                        <label>Status</label>
+                                        <div class="custom-control custom-checkbox" style="margin-top: 5%">
+                                            <input name="instituicaoStatus" type="checkbox" class="custom-control-input" id="instituicaoStatus">
+                                            <label class="custom-control-label" for="instituicaoStatus">Desativado</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="ml-auto mr-auto">
+                                    <button id="btnCadastrarInstituicao" type="submit" class="btn btn-primary btn-round">Adicionar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="tab-pane" id="abaAlterar" role="tabpanel">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <div style="font-size: 14px; margin-top:10px">Alterar</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-pane" id="abaDeletar" role="tabpanel">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <div style="font-size: 14px; margin-top:10px">Deletar</div>
+            </div>
+        </div>
+    </div>
+</div>

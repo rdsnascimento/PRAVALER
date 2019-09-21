@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Desafio 2</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5 mr-auto ml-auto">
+                <h2 class="text-center titulo">Usina Angra dos Reis</h2>
+                <br />
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="massa">Massa</label>
+                            <input type="number" class="form-control" id="massa"
+                                placeholder="Digite a massa do material radioativo" min="1">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botao limpar e botao calcular -->
+                <div class="row botoes">
+                    <div class="col-md-6">
+                        <button type="button" onClick="limpar();"
+                            class="btn btn-danger btn-lg btn-block">Limpar</button> <!-- Limpar -->
+                    </div>
+
+                    <div class="col-md-6">
+                        <button type="button" onclick="main();"
+                            class="btn btn-primary btn-lg btn-block">Calcular</button> <!-- Calcular -->
+                    </div>
+                </div>
+                <br /><br /><br />
+
+                <!-- Resultado -->
+                <div id="resultado"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- script do algoritmo com os calculos -->
+    <script src="algoritmo.js"></script>
+
+    <!-- Boostrap e Jquery -->
+    <script src="assets/js/jquery-3.4.1.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+</body>
+
+</html>

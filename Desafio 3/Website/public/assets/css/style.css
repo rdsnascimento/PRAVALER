@@ -1,0 +1,235 @@
+body {
+  overflow-x: hidden;
+}
+
+#sidebar {
+  min-height: 100vh;
+  margin-left: -15rem;
+  -webkit-transition: margin .25s ease-out;
+  -moz-transition: margin .25s ease-out;
+  -o-transition: margin .25s ease-out;
+  transition: margin .25s ease-out;
+}
+
+#sidebar .sidebar-heading {
+  padding: 0.875rem 1.25rem;
+  font-size: 1.2rem;
+}
+
+#sidebar .list-group {
+  width: 15rem;
+}
+
+#page-content-wrapper {
+  min-width: 100vw;
+}
+
+#wrapper.toggled #sidebar {
+  margin-left: 0;
+}
+
+@media (min-width: 768px) {
+  #sidebar {
+    margin-left: 0;
+  }
+
+  #page-content-wrapper {
+    min-width: 0;
+    width: 100%;
+  }
+
+  #wrapper.toggled #sidebar {
+    margin-left: -15rem;
+  }
+}
+
+
+
+
+
+/* Modal alertas */
+.modal-template {
+  color: #434e65;
+  width: 525px;
+}
+
+.modal-template .modal-content {
+  padding: 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: none;
+}
+
+.modal-template .modal-sucesso {
+  background: #47c9a2;
+  border-bottom: none;
+  position: relative;
+  text-align: center;
+  margin: -20px -20px 0;
+  border-radius: 5px 5px 0 0;
+  padding: 35px;
+}
+
+.modal-template .modal-erro {
+  background: #e85e6c;
+  border-bottom: none;
+  position: relative;
+  text-align: center;
+  margin: -20px -20px 0;
+  border-radius: 5px 5px 0 0;
+  padding: 35px;
+}
+
+.modal-template h4 {
+  text-align: center;
+  font-size: 28px;
+  margin: 10px 0;
+}
+
+.modal-template .form-control, .modal-template .btn {
+  min-height: 40px;
+  border-radius: 3px;
+}
+
+.modal-template .close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  color: #fff;
+  text-shadow: none;
+  opacity: 0.5;
+}
+
+.modal-template .close:hover {
+  opacity: 0.8;
+}
+
+.modal-template .icon-box {
+  color: #fff;
+  width: 95px;
+  height: 95px;
+  display: inline-block;
+  border-radius: 50%;
+  z-index: 9;
+  border: 5px solid #fff;
+  padding: 15px;
+  text-align: center;
+}
+
+.modal-template .icon-box i {
+  font-size: 64px;
+  margin: -4px 0 0 -4px;
+}
+
+.modal-template.modal-dialog {
+  margin-top: 80px;
+}
+
+.modal-template .btn {
+  color: #fff;
+  border-radius: 4px;
+  background: #eeb711;
+  text-decoration: none;
+  transition: all 0.4s;
+  line-height: normal;
+  border-radius: 30px;
+  margin-top: 10px;
+  padding: 6px 20px;
+  border: none;
+}
+
+.modal-template p {
+  font-size: 16px;
+}
+
+.modal-template .btn:hover, .modal-template .btn:focus {
+  background: #eda645;
+  outline: none;
+}
+
+.modal-template .btn span {
+  margin: 1px 3px 0;
+  float: left;
+}
+
+.modal-template .btn i {
+  margin-left: 1px;
+  font-size: 20px;
+  float: right;
+}
+
+.trigger-btn {
+  display: inline-block;
+  margin: 100px auto;
+}
+
+@media (max-width: 1024px) {
+  .modal-template h4 {
+      font-size: 23px;
+  }
+  .modal-template {
+      width: inherit;
+  }
+  .modal-template p {
+      font-size: 14px;
+  }
+  .modal-template .btn {
+      margin-top: 10px;
+  }
+}
+
+
+
+
+
+
+
+
+/* Formatacao */
+
+.nav-link {
+  color: #cbbde2
+}
+
+.nav-tabs .nav-link.active {
+  color: #fff
+}
+
+.nav-tabs > .nav-item > a:hover {
+  color: #fff
+}
+
+.bd-navbar {
+  min-height: 4rem;
+  background-color: #563d7c;
+  box-shadow: 0 0.5rem 1rem rgba(0,0,0,.05), inset 0 -1px 0 rgba(0,0,0,.1);
+}
+
+.nav-tabs .nav-link.active{
+  background-color: inherit;
+  border-color: #dee2e6 #dee2e6 #563d7c;
+}
+
+.btnOcultar{
+  font-weight: 500;
+  color: #ffe484;
+  border-color: #ffe484;
+}
+
+.btnOcultar:hover{
+  color: #2a2730;
+  background-color: #ffe484;
+  border-color: #ffe484;
+}
+
+.tab-pane .card {
+  margin-top: 10%;
+}
+
+body{
+  background-color: #f4f3ef
+}
+
+#btnCadastrarInstituicao{
+  margin-top: 10%;
+}
