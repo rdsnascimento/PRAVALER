@@ -4,6 +4,7 @@ namespace App\Models;
 use MF\Model\Model;
 
 class Curso extends Model {
+    private $idCurso;
     private $nome;
     private $duracao;
     private $status;
@@ -35,6 +36,16 @@ class Curso extends Model {
         $stmt->bindValue(':fk_cnpj', $this->__get('fk_cnpj'));
         $stmt->execute();
         return $this;
+    }
+
+    public function cursoAlterar(){
+        $query = "update curso set nome = :nome, duracao = :duracao, status = :status where idCurso = :idCurso";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':nome', $this->__get('nome'));
+        $stmt->bindValue(':duracao', $this->__get('duracao'));
+        $stmt->bindValue(':status', $this->__get('status'));
+        $stmt->bindValue(':idCurso', $this->__get('idCurso'));
+        $stmt->execute();
     }
 
     public function cursoListar(){

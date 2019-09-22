@@ -56,6 +56,12 @@ class Route extends Bootstrap {
 			'action' => 'cursoListar'
 		);
 
+		$routes['cursoAlterar'] = array(
+			'route' => '/cursoAlterar',
+			'controller' => 'cursoController',
+			'action' => 'cursoAlterar'
+		);
+
 		$this->setRoutes($routes);
 	}
 

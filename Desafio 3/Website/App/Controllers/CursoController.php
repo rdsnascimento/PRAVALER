@@ -12,7 +12,8 @@ class CursoController extends Action
     public function curso()
     {
         $instituicao = Container::getModel('Instituicao');
-        $this->view->instituicao = $instituicao->getInstituicoesAtivas();
+        $this->view->instituicaoAtiva = $instituicao->getInstituicoesAtivas();
+        $this->view->instituicaoTodas = $instituicao->getInstituicoes();
         $this->render('curso', 'layout');
     }
 
@@ -37,6 +38,24 @@ class CursoController extends Action
             $_SESSION["mensagem"] = $this->msgSucesso();
             header("Location: /curso");
         }
+    }
+
+    public function cursoAlterar()
+    {
+        $curso = Container::getModel('Curso');
+        $curso->__set('nome', $_POST['cursoNome']);
+        $curso->__set('duracao', $_POST['cursoDuracao']);
+        $curso->__set('idCurso', $_POST['cursoId']);
+
+        if (!isset($_POST['cursoStatus']))
+            $curso->__set('status', 0);
+        else
+            $curso->__set('status', 1);
+
+        session_start();
+        $curso->cursoAlterar();
+        $_SESSION["mensagem"] = $this->msgSucesso('alterado');
+        header("Location: /curso");
     }
 
     public function cursoListar()
