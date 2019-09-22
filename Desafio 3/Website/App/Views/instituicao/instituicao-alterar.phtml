@@ -1,0 +1,82 @@
+<div class="tab-pane" id="abaAlterar" role="tabpanel">
+    <div class="row">
+        <div class="col-md-8 ml-auto mr-auto">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h5 class="card-title">
+                        Alterar Instituições
+                    </h5>
+                    <sup>Escolha uma instituição para alterar</sup>
+                </div>
+
+                <?php if (!empty($this->view->instituicao)) { ?>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-8 col-12 mr-auto ml-auto text-center">
+                                <select class="form-control" id="alterarInstituicaoSelect" name="select">
+                                    <option selected disabled>Selecione</option>
+                                    <?php foreach ($this->view->instituicao as $key => $instituicao) { ?>
+                                        <option value="<?php echo $instituicao['cnpj']; ?>" nome="<?php echo $instituicao['nome']; ?>" status="<?php echo $instituicao['status']; ?>">
+                                            <?php echo $instituicao['nome']; ?>
+                                        </option>
+                                    <?php
+                                        } ?>
+                                </select>
+                                <br />
+                            </div>
+                        </div>
+
+                        <form class="needs-validation" action="/instituicaoAlterar" method="post" enctype="multipart/form-data" id="cadastrarInstituicao" novalidate="">
+                            <div class="row">
+                                <div class="col-md-5 col-6">
+                                    <div class="form-group">
+                                        <label>Instituição</label>
+                                        <input id="alterarInstituicaoNome" name="instituicaoNome" type="text" class="form-control" placeholder="Digite o nome da instituição" autocomplete="off" value="" required>
+                                        <div class="invalid-feedback">
+                                            Insira um nome de instituição válido
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 col-6">
+                                    <div class="form-group">
+                                        <label>CNPJ</label>
+                                        <input id="alterarInstituicaoCnpj" name="instituicaoCnpj" type="text" class="form-control cnpj" placeholder="__.___.___/____-__" maxlength="14" autocomplete="off" required disabled>
+                                        <div class="invalid-feedback">
+                                            Insira um CNPJ válido
+                                        </div>
+                                    </div>
+                                    <input type="text" id="alterarInstituicaoCnpjAlterior" name="instituicaoCnpjAnterior" style="display: none">
+                                </div>
+
+                                <div class="col-md-3 col-12">
+                                    <div class="form-group">
+                                        <label>Status</label>
+                                        <div class="custom-control custom-checkbox" style="margin-top: 5%">
+                                            <input name="instituicaoStatus" type="checkbox" class="custom-control-input" id="alterarInstituicaoStatus">
+                                            <label class="custom-control-label" for="alterarInstituicaoStatus">Desativado</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="ml-auto mr-auto">
+                                    <button id="btnAlterarInstituicao" type="submit" class="btn btn-primary btn-round">Alterar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                <?php } else { ?>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12 col-12 text-center">
+                                Não há instituições para alterar
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
+    </div>
+</div>

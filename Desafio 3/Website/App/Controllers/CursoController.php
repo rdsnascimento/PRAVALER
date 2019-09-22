@@ -13,49 +13,68 @@ class CursoController extends Action
     {
         $instituicao = Container::getModel('Instituicao');
         $this->view->instituicaoAtiva = $instituicao->getInstituicoesAtivas();
-        $this->view->instituicaoTodas = $instituicao->getInstituicoes();
+        $this->view->instituicaoTodas = $instituicao->getInstituicoesAtivas(); //se depois decidir mudar
         $this->render('curso', 'layout');
     }
 
     public function cursoCadastrar()
     {
-        $curso = Container::getModel('Curso');
-        $curso->__set('nome', $_POST['cursoNome']);
-        $curso->__set('duracao', $_POST['cursoDuracao']);
-        $curso->__set('fk_cnpj', $_POST['cursoInstituicao']);
-
-        if (!isset($_POST['cursoStatus']))
-            $curso->__set('status', 0);
-        else
-            $curso->__set('status', 1);
-
         session_start();
-        if ($curso->cursoVerificar() != '') {
-            $_SESSION["mensagem"] = $this->msgErro('Curso já cadastrado nesta instituição!');
-            header("Location: /curso");
+        $nome = $_POST['cursoNome'];
+        $duracao = $_POST['cursoDuracao'];
+
+        /* Se os campos estiverem vazios */
+        if (!isset($nome) || !isset($duracao)) {
+            $_SESSION["mensagem"] = $this->msgErro('Você deve preencher todos os campos!');
+            header("Location: /curso#abaCadastrar");
         } else {
-            $curso->cursoCadastrar();
-            $_SESSION["mensagem"] = $this->msgSucesso();
-            header("Location: /curso");
+            $curso = Container::getModel('Curso');
+            $curso->__set('nome', $nome);
+            $curso->__set('duracao', $duracao);
+            $curso->__set('fk_cnpj', $_POST['cursoInstituicao']);
+
+            if (!isset($_POST['cursoStatus']))
+                $curso->__set('status', 0);
+            else
+                $curso->__set('status', 1);
+
+            if ($curso->cursoVerificar() != '') {
+                $_SESSION["mensagem"] = $this->msgErro('Curso já cadastrado nesta instituição!');
+                header("Location: /curso");
+            } else {
+                $curso->cursoCadastrar();
+                $_SESSION["mensagem"] = $this->msgSucesso();
+                header("Location: /curso");
+            }
         }
     }
 
     public function cursoAlterar()
     {
-        $curso = Container::getModel('Curso');
-        $curso->__set('nome', $_POST['cursoNome']);
-        $curso->__set('duracao', $_POST['cursoDuracao']);
-        $curso->__set('idCurso', $_POST['cursoId']);
-
-        if (!isset($_POST['cursoStatus']))
-            $curso->__set('status', 0);
-        else
-            $curso->__set('status', 1);
-
         session_start();
-        $curso->cursoAlterar();
-        $_SESSION["mensagem"] = $this->msgSucesso('alterado');
-        header("Location: /curso");
+        $nome = $_POST['cursoNome'];
+        $duracao = $_POST['cursoDuracao'];
+        $idCurso = $_POST['cursoId'];
+
+        /* Se os campos estiverem vazios */
+        if (!isset($nome) || !isset($duracao) || !isset($idCurso)) {
+            $_SESSION["mensagem"] = $this->msgErro('Você deve preencher todos os campos!', 'Falha ao alterar o curso');
+            header("Location: /curso#abaAlterar");
+        } else {
+            $curso = Container::getModel('Curso');
+            $curso->__set('nome', $nome);
+            $curso->__set('duracao', $duracao);
+            $curso->__set('idCurso', $idCurso);
+
+            if (!isset($_POST['cursoStatus']))
+                $curso->__set('status', 0);
+            else
+                $curso->__set('status', 1);
+
+            $curso->cursoAlterar();
+            $_SESSION["mensagem"] = $this->msgSucesso('alterado');
+            header("Location: /curso");
+        }
     }
 
     public function cursoListar()
@@ -63,6 +82,22 @@ class CursoController extends Action
         $curso = Container::getModel('Curso');
         $curso->__set('fk_cnpj', $_POST['cnpj']);
         echo json_encode($curso->cursoListar());
+    }
+
+    public function cursoDeletar()
+    {
+        session_start();
+        if (!isset($_POST['cursoId'])) {
+            $_SESSION["mensagem"] = $this->msgErro('Você deve escolher um curso!', 'Falha ao tentar deletar!');
+            header("Location: /curso#abaDeletar");
+        } else {
+            $curso = Container::getModel('Curso');
+            $curso->__set('idCurso', $_POST['cursoId']);
+            $curso->cursoDeletar();
+
+            $_SESSION["mensagem"] = $this->msgSucesso('deletado');
+            header("Location: /curso");
+        }
     }
 
     /* Modal de alerta */
@@ -89,12 +124,13 @@ class CursoController extends Action
         return $mensagem;
     }
 
-    public function msgErro($msgAlerta = '')
+    public function msgErro($msgAlerta = '', $msgPrincipal = '')
     {
+        if ($msgPrincipal == '') $msgPrincipal = "Ooops! Falha ao cadastrar o curso!";
         $mensagem = $this->modal();
         $mensagem = str_replace("[modalTipo]", "modal-erro", $mensagem);
         $mensagem = str_replace("[modalIcone]", "&#xE5CD;", $mensagem);
-        $mensagem = str_replace("[modalTitulo]", "Ooops! Falha ao cadastrar o curso!", $mensagem);
+        $mensagem = str_replace("[modalTitulo]", $msgPrincipal, $mensagem);
         $mensagem = str_replace("[modalMensagem]", $msgAlerta, $mensagem);
         $mensagem = str_replace("[modalBtn]", "btn-success", $mensagem);
         return $mensagem;

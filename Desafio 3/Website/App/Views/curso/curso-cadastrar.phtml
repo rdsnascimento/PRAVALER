@@ -1,0 +1,82 @@
+<div class="tab-pane" id="abaCadastrar" role="tabpanel">
+    <div class="row">
+        <div class="col-md-8 ml-auto mr-auto">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h5 class="card-title">
+                        Cadastrar Curso
+                    </h5>
+                    <!-- <sup>Cadastre uma nova instituição nos campos abaixo</sup> -->
+                </div>
+
+                <?php if (!empty($this->view->instituicaoAtiva)) { ?>
+                    <form class="needs-validation" action="/cursoCadastrar" method="post" enctype="multipart/form-data" id="cadastrarCurso" novalidate="">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-8 col-12 mr-auto ml-auto">
+                                    <label for="cursoInstituicaoCadastrar">Selecione uma instituição ativa</label>
+                                    <select class="form-control" name="cursoInstituicao" id="cursoInstituicaoCadastrar">
+                                        <option selected disabled>Selecione</option>
+                                        <?php foreach ($this->view->instituicaoAtiva as $key => $instituicao) { ?>
+                                            <option value="<?php echo $instituicao['cnpj']; ?>" nome="<?php echo $instituicao['nome']; ?>" status="<?php echo $instituicao['status']; ?>">
+                                                <?php echo $instituicao['nome']; ?>
+                                            </option>
+                                        <?php
+                                            } ?>
+                                    </select>
+                                    <br />
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 col-6">
+                                    <div class="form-group">
+                                        <label>Nome do curso</label>
+                                        <input id="cursoNome" name="cursoNome" type="text" class="form-control" placeholder="Digite o nome do curso" autocomplete="off" value="" required disabled>
+                                        <div class="invalid-feedback">
+                                            Insira um nome de curso válido
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3 col-6">
+                                    <div class="form-group">
+                                        <label>Duração (semestres)</label>
+                                        <input id="cursoDuracao" name="cursoDuracao" type="number" class="form-control" min="1" maxlength="3" autocomplete="off" placeholder="Duração" required disabled>
+                                        <div class="invalid-feedback">
+                                            Insira um período de duração válido
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3 col-12">
+                                    <div class="form-group">
+                                        <label>Status do curso</label>
+                                        <div class="custom-control custom-checkbox" style="margin-top: 5%">
+                                            <input name="cursoStatus" type="checkbox" class="custom-control-input" id="cursoStatus" disabled>
+                                            <label class="custom-control-label" for="cursoStatus">Desativado</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="ml-auto mr-auto">
+                                    <button id="btnCadastrarCurso" type="submit" class="btn btn-primary btn-round">Cadastrar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+            </div>
+        <?php } else { ?>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12 col-12 text-center">
+                        Não há instituições cadastradas (ou ativadas)
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,66 @@
+<div class="tab-pane active" id="abaListar" role="tabpanel">
+    <div class="row">
+        <div class="col-md-8 ml-auto mr-auto">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h5 class="card-title">
+                        Listar cursos
+                    </h5>
+                    <!-- <sup>Cadastre uma nova instituição nos campos abaixo</sup> -->
+                </div>
+
+                <?php if (!empty($this->view->instituicaoAtiva)) { ?>
+
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-8 col-12 mr-auto ml-auto">
+                                <label for="cursoInstituicaoListar">Selecione uma instituição ativa</label>
+                                <select class="form-control" name="cursoInstituicao" id="cursoInstituicaoListar">
+                                    <option selected disabled>Selecione</option>
+                                    <?php foreach ($this->view->instituicaoAtiva as $key => $instituicao) { ?>
+                                        <option value="<?php echo $instituicao['cnpj']; ?>" nome="<?php echo $instituicao['nome']; ?>" status="<?php echo $instituicao['status']; ?>">
+                                            <?php echo $instituicao['nome']; ?>
+                                        </option>
+                                    <?php
+                                        } ?>
+                                </select>
+                                <br />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-8 col-12 mr-auto ml-auto">
+                                <label for="cursoCadastrado">Selecione um curso ativo</label>
+                                <select class="form-control" name="cursoCadastrado" id="cursoCadastrado" disabled>
+                                    <option selected disabled>Selecione</option>
+                                </select>
+                                <br />
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-8 mr-auto ml-auto">
+                                <div id="cursoListarResultado">
+                                    Id do curso: <span id="cursolId"></span><br />
+                                    Curso: <span id="cursolNome"></span><br />
+                                    Duração (semestres): <span id="cursolDuracao"></span><br />
+                                    Situação: <span id="cursolStatus"></span><br />
+                                    CNPJ da Instituição: <span id="cursolCnpj"></span><br />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+            </div>
+        <?php } else { ?>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12 col-12 text-center">
+                        Não há instituições cadastradas (ou ativadas)
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
+        </div>
+    </div>
+</div>

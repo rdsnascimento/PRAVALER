@@ -55,4 +55,11 @@ class Curso extends Model {
         $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
+
+    public function cursoDeletar(){
+        $query = "delete from curso where idCurso = :idCurso";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':idCurso', $this->__get('idCurso'));
+        $stmt->execute();
+    }
 }

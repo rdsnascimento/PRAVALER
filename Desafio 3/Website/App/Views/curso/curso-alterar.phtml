@@ -1,0 +1,91 @@
+<div class="tab-pane" id="abaAlterar" role="tabpanel">
+    <div class="row">
+        <div class="col-md-8 ml-auto mr-auto">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h5 class="card-title">
+                        Alterar cursos
+                    </h5>
+                </div>
+
+                <?php if (!empty($this->view->instituicaoTodas)) { ?>
+                    <form class="needs-validation" action="/cursoAlterar" method="post" enctype="multipart/form-data" id="cadastrarCurso" novalidate="">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-8 col-12 mr-auto ml-auto">
+                                    <label for="cursoInstituicaoAlterar">Selecione uma instituição</label>
+                                    <select class="form-control" id="cursoInstituicaoAlterar">
+                                        <option selected disabled>Selecione</option>
+                                        <?php foreach ($this->view->instituicaoTodas as $key => $instituicao) { ?>
+                                            <option value="<?php echo $instituicao['cnpj']; ?>" nome="<?php echo $instituicao['nome']; ?>" status="<?php echo $instituicao['status']; ?>">
+                                                <?php echo $instituicao['nome']; ?>
+                                            </option>
+                                        <?php
+                                            } ?>
+                                    </select>
+                                    <br />
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-8 col-12 mr-auto ml-auto">
+                                    <label for="cursoCadastradoAlterar">Selecione um curso</label>
+                                    <select class="form-control" name="cursoId" id="cursoCadastradoAlterar" disabled>
+                                        <option selected disabled>Selecione</option>
+                                    </select>
+                                    <br />
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 col-6">
+                                    <div class="form-group">
+                                        <label>Nome do curso</label>
+                                        <input id="cursoNomeAlterar" name="cursoNome" type="text" class="form-control" placeholder="Digite o nome do curso" autocomplete="off" value="" required disabled>
+                                        <div class="invalid-feedback">
+                                            Insira um nome de curso válido
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3 col-6">
+                                    <div class="form-group">
+                                        <label>Duração (semestres)</label>
+                                        <input id="cursoDuracaoAlterar" name="cursoDuracao" type="number" class="form-control" min="1" maxlength="3" autocomplete="off" placeholder="Duração" required disabled>
+                                        <div class="invalid-feedback">
+                                            Insira um período de duração válido
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3 col-12">
+                                    <div class="form-group">
+                                        <label>Status do curso</label>
+                                        <div class="custom-control custom-checkbox" style="margin-top: 5%">
+                                            <input name="cursoStatus" type="checkbox" class="custom-control-input" id="cursoStatusAlterar" disabled>
+                                            <label class="custom-control-label" for="cursoStatusAlterar">Desativado</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="ml-auto mr-auto">
+                                    <button id="btnCadastrarCurso" type="submit" class="btn btn-primary btn-round">Alterar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+            </div>
+        <?php } else { ?>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12 col-12 text-center">
+                        Não há instituições cadastradas (ou ativadas)
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,66 @@
+<div class="tab-pane" id="abaDeletar" role="tabpanel">
+    <div class="row">
+        <div class="col-md-8 ml-auto mr-auto">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h5 class="card-title">Deletar cursos</h5>
+                </div>
+
+                <?php if (!empty($this->view->instituicaoTodas)) { ?>
+                    <form class="needs-validation" action="/cursoDeletar" method="post" enctype="multipart/form-data" id="deletarCurso" novalidate="">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-8 col-12 mr-auto ml-auto">
+                                    <label for="cursoInstituicaoDeletar">Selecione uma instituição</label>
+                                    <select class="form-control" id="cursoInstituicaoDeletar">
+                                        <option selected disabled>Selecione</option>
+                                        <?php foreach ($this->view->instituicaoTodas as $key => $instituicao) { ?>
+                                            <option value="<?php echo $instituicao['cnpj']; ?>" nome="<?php echo $instituicao['nome']; ?>" status="<?php echo $instituicao['status']; ?>">
+                                                <?php echo $instituicao['nome']; ?>
+                                            </option>
+                                        <?php } ?>
+                                    </select>
+                                    <br />
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-8 col-12 mr-auto ml-auto">
+                                    <label for="cursoId">Selecione um curso</label>
+                                    <select class="form-control" name="cursoId" id="cursoCadastradoDeletar" disabled>
+                                        <option selected disabled>Selecione</option>
+                                    </select>
+                                    <br />
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-8 mr-auto ml-auto">
+                                    <div id="cursoDeletarResultado">
+                                        Curso: <span id="cursodNome"></span><br />
+                                        Duração (semestres): <span id="cursodDuracao"></span><br />
+                                        Situação: <span id="cursodStatus"></span><br />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="ml-auto mr-auto">
+                                    <button id="btnDeletarCurso" type="submit" class="btn btn-primary btn-round">Deletar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+            </div>
+        <?php } else { ?>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12 col-12 text-center">
+                        Não há instituições cadastradas (ou ativadas)
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
+        </div>
+    </div>
+</div>

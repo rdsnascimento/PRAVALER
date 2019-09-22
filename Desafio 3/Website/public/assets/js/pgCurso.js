@@ -1,6 +1,4 @@
 $(document).ready(function () {
-    
-
     $('#cursoInstituicaoCadastrar').change(function () {
         $("#cursoNome").prop("disabled", false);
         $("#cursoDuracao").prop("disabled", false);
@@ -43,13 +41,18 @@ $(document).ready(function () {
         exibir('cursoCadastrado', this);
     });
 
+    $("#cursoInstituicaoDeletar").change(function () {
+        exibir('cursoCadastradoDeletar', this);
+        deletarCamposLimpar();
+    });
+
     /* exibe conteudo seletor de curso */
     $("#cursoInstituicaoAlterar").change(function () {
         exibir('cursoCadastradoAlterar', this);
         alterarCamposLimpar();
     });
 
-    /* limpa e desativa os campos de curso */
+    /* limpa e desativa os campos de curso na aba alterars */
     const alterarCamposLimpar = () => {
         $("#cursoNomeAlterar").val('');
         $("#cursoDuracaoAlterar").val('');
@@ -83,7 +86,29 @@ $(document).ready(function () {
         }
     });
 
-    /* Exibe a descricao do curso */
+    /* Exibe a descricao do curso em deletar */
+    $("#cursoCadastradoDeletar").change(function () {
+        let cursoNome = $(this).find(':selected').attr('nome');
+        let cursoDuracao = $(this).find(':selected').attr('duracao');
+        let cursoStatus = $(this).find(':selected').attr('status');
+
+        $("#cursodNome").html(cursoNome);
+        $("#cursodDuracao").html(cursoDuracao);
+        if (cursoStatus == 0) {
+            $("#cursodStatus").html("Ativado");
+        } else {
+            $("#cursodStatus").html("Desativado");
+        }
+    });
+
+    /* limpa os campos da aba deletar */
+    const deletarCamposLimpar = () => {
+        $("#cursodNome").html("");
+        $("#cursodDuracao").html("");
+        $("#cursodStatus").html("");
+    }
+
+    /* Exibe a descricao do curso em listar */
     $("#cursoCadastrado").change(function () {
         let cursoId = this.value;
         let cursoNome = $(this).find(':selected').attr('nome');

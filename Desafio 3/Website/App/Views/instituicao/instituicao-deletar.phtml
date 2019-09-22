@@ -1,0 +1,73 @@
+<div class="tab-pane" id="abaDeletar" role="tabpanel">
+    <div class="row">
+        <div class="col-md-8 ml-auto mr-auto">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h5 class="card-title">
+                        Deletar Instituições
+                    </h5>
+                    <sup>Escolha uma instituição para deletar</sup>
+                </div>
+
+                <?php if (!empty($this->view->instituicao)) { ?>
+                    <div class="card-body">
+                        <form class="needs-validation" action="/instituicaoDeletar" method="post" enctype="multipart/form-data" id="cadastrarInstituicao" novalidate="">
+                            <div class="row">
+                                <div class="col-md-8 col-12 mr-auto ml-auto text-center">
+                                    <select class="form-control" id="deletarInstituicaoSelect" name="instituicaoDeletar">
+                                        <option selected disabled>Selecione</option>
+                                        <?php foreach ($this->view->instituicao as $key => $instituicao) { ?>
+                                            <option value="<?php echo $instituicao['cnpj']; ?>" nome="<?php echo $instituicao['nome']; ?>" status="<?php echo $instituicao['status']; ?>">
+                                                <?php echo $instituicao['nome']; ?>
+                                            </option>
+                                        <?php
+                                            } ?>
+                                    </select>
+                                    <br />
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-5 col-6">
+                                    <div class="form-group">
+                                        <label>Instituição</label>
+                                        <div id="deletarInstituicaoNome" class="form-control">Nome da Instituição</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-6">
+                                    <div class="form-group">
+                                        <label>CNPJ</label>
+                                        <div id="deletarInstituicaoCnpj" type="text" class="form-control">XX.XXX.XXX/XXXX-XX</div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3 col-12">
+                                    <div class="form-group">
+                                        <label>Status</label>
+                                        <div id="deletarInstituicaoStatus" type="text" class="form-control">
+                                            Situação
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="ml-auto mr-auto">
+                                    <button id="btnDeletarInstituicao" type="submit" class="btn btn-primary btn-round">Deletar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                <?php } else { ?>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12 col-12 text-center">
+                                Não há instituições para deletar
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
+            </div>
+        </div>
+    </div>
+</div>

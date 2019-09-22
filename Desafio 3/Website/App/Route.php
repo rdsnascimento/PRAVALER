@@ -62,6 +62,12 @@ class Route extends Bootstrap {
 			'action' => 'cursoAlterar'
 		);
 
+		$routes['cursoDeletar'] = array(
+			'route' => '/cursoDeletar',
+			'controller' => 'cursoController',
+			'action' => 'cursoDeletar'
+		);
+
 		$this->setRoutes($routes);
 	}
 
