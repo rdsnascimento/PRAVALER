@@ -6,15 +6,15 @@
                     <h5 class="card-title">Deletar cursos</h5>
                 </div>
 
-                <?php if (!empty($this->view->instituicaoTodas)) { ?>
+                <?php if (!empty($this->view->instituicaoAtiva)) { ?>
                     <form class="needs-validation" action="/cursoDeletar" method="post" enctype="multipart/form-data" id="deletarCurso" novalidate="">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-8 col-12 mr-auto ml-auto">
-                                    <label for="cursoInstituicaoDeletar">Selecione uma instituição</label>
+                                    <label for="cursoInstituicaoDeletar">Selecione uma instituição ativa</label>
                                     <select class="form-control" id="cursoInstituicaoDeletar">
                                         <option selected disabled>Selecione</option>
-                                        <?php foreach ($this->view->instituicaoTodas as $key => $instituicao) { ?>
+                                        <?php foreach ($this->view->instituicaoAtiva as $key => $instituicao) { ?>
                                             <option value="<?php echo $instituicao['cnpj']; ?>" nome="<?php echo $instituicao['nome']; ?>" status="<?php echo $instituicao['status']; ?>">
                                                 <?php echo $instituicao['nome']; ?>
                                             </option>

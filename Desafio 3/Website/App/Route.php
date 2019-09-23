@@ -56,6 +56,12 @@ class Route extends Bootstrap {
 			'action' => 'cursoListar'
 		);
 
+		$routes['cursoListarAtivos'] = array(
+			'route' => '/cursoListarAtivos',
+			'controller' => 'cursoController',
+			'action' => 'cursoListarAtivos'
+		);
+
 		$routes['cursoAlterar'] = array(
 			'route' => '/cursoAlterar',
 			'controller' => 'cursoController',
@@ -66,6 +72,24 @@ class Route extends Bootstrap {
 			'route' => '/cursoDeletar',
 			'controller' => 'cursoController',
 			'action' => 'cursoDeletar'
+		);
+
+		$routes['aluno'] = array(
+			'route' => '/aluno',
+			'controller' => 'alunoController',
+			'action' => 'aluno'
+		);
+
+		$routes['alunoCadastrar'] = array(
+			'route' => '/alunoCadastrar',
+			'controller' => 'alunoController',
+			'action' => 'alunoCadastrar'
+		);
+
+		$routes['cidadeListar'] = array(
+			'route' => '/cidadeListar',
+			'controller' => 'alunoController',
+			'action' => 'cidadeListar'
 		);
 
 		$this->setRoutes($routes);

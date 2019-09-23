@@ -56,6 +56,14 @@ class Curso extends Model {
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
+    public function cursoListarAtivos(){
+        $query = "select * from curso where fk_cnpj = :fk_cnpj and status = 0";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':fk_cnpj', $this->__get('fk_cnpj'));
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
     public function cursoDeletar(){
         $query = "delete from curso where idCurso = :idCurso";
         $stmt = $this->db->prepare($query);

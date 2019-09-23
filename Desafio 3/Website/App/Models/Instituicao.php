@@ -30,7 +30,7 @@ class Instituicao extends Model {
     }
 
     public function instituicaoCadastrar(){
-        $query = "insert into Instituicao(cnpj, nome, status) values(:cnpj, :nome, :status)";
+        $query = "insert into instituicao(cnpj, nome, status) values(:cnpj, :nome, :status)";
         $stmt = $this->db->prepare($query);
         $stmt->bindValue(':cnpj', $this->__get('cnpj'));
         $stmt->bindValue(':nome', $this->__get('nome'));
@@ -40,7 +40,7 @@ class Instituicao extends Model {
     }
 
     public function instituicaoAlterar(){
-        $query = "update Instituicao set status = :status, nome = :nome where cnpj = :cnpj";
+        $query = "update instituicao set status = :status, nome = :nome where cnpj = :cnpj";
         $stmt = $this->db->prepare($query);
         $stmt->bindValue(':cnpj', $this->__get('cnpj'));
         $stmt->bindValue(':nome', $this->__get('nome'));
@@ -49,21 +49,21 @@ class Instituicao extends Model {
     }
 
     public function instituicaoDeletar(){
-        $query = "delete from Instituicao where cnpj = :cnpj";
+        $query = "delete from instituicao where cnpj = :cnpj";
         $stmt = $this->db->prepare($query);
         $stmt->bindValue(':cnpj', $this->__get('cnpj'));
         $stmt->execute();
     }
 
     public function getInstituicoes(){
-        $query = "select * from Instituicao";
+        $query = "select * from instituicao";
         $stmt = $this->db->prepare($query);
         $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
     public function getInstituicoesAtivas(){
-        $query = "select * from Instituicao where status = 0";
+        $query = "select * from instituicao where status = 0";
         $stmt = $this->db->prepare($query);
         $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_ASSOC); 

@@ -13,7 +13,7 @@ class CursoController extends Action
     {
         $instituicao = Container::getModel('Instituicao');
         $this->view->instituicaoAtiva = $instituicao->getInstituicoesAtivas();
-        $this->view->instituicaoTodas = $instituicao->getInstituicoesAtivas(); //se depois decidir mudar
+        // $this->view->instituicaoTodas = $instituicao->getInstituicoesAtivas(); //se depois decidir mudar
         $this->render('curso', 'layout');
     }
 
@@ -82,6 +82,13 @@ class CursoController extends Action
         $curso = Container::getModel('Curso');
         $curso->__set('fk_cnpj', $_POST['cnpj']);
         echo json_encode($curso->cursoListar());
+    }
+
+    public function cursoListarAtivos()
+    {
+        $curso = Container::getModel('Curso');
+        $curso->__set('fk_cnpj', $_POST['cnpj']);
+        echo json_encode($curso->cursoListarAtivos());
     }
 
     public function cursoDeletar()

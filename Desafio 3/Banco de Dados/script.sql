@@ -7,14 +7,14 @@ create database dbsgie;
 -- Coloca a base de dados livraria em uso
 use dbsgie;
 
-CREATE TABLE Instituicao (
+CREATE TABLE instituicao (
     nome varchar(60),
     status tinyint(1),
     cnpj char(14),
     PRIMARY KEY (cnpj)
 );
 
-CREATE TABLE Curso (
+CREATE TABLE curso (
     idCurso tinyint AUTO_INCREMENT,
     nome varchar(64),
     duracao tinyint,
@@ -24,14 +24,14 @@ CREATE TABLE Curso (
     FOREIGN KEY (fk_cnpj) REFERENCES Instituicao (cnpj)
 );
 
-CREATE TABLE Estado (
+CREATE TABLE estado (
     idEstado tinyint,
     nomeEstado varchar(75),
     uf varchar(5),
     PRIMARY KEY (idEstado)
 );
 
-CREATE TABLE Cidade (
+CREATE TABLE cidade (
     idCidade int(11),
     nomeCidade varchar(120),
     fk_idEstado tinyint,
@@ -39,12 +39,12 @@ CREATE TABLE Cidade (
     FOREIGN KEY (fk_idEstado) REFERENCES Estado (idEstado)
 );
 
-CREATE TABLE Alunos (
+CREATE TABLE aluno (
     nome varchar(64),
     cpf char(12),
     dataNascimento date,
     email varchar(60),
-    celular varchar(15),
+    celular varchar(20),
     endereco varchar(90),
     numero tinyint,
     bairro varchar(64),
@@ -55,7 +55,7 @@ CREATE TABLE Alunos (
     FOREIGN KEY (fk_idCurso) REFERENCES Curso (idCurso)
 );
 
-INSERT INTO Estado (idEstado, nomeEstado, uf) VALUES
+INSERT INTO estado (idEstado, nomeEstado, uf) VALUES
 (1, 'Acre', 'AC'),
 (2, 'Alagoas', 'AL'),
 (3, 'Amazonas', 'AM'),
@@ -84,7 +84,7 @@ INSERT INTO Estado (idEstado, nomeEstado, uf) VALUES
 (26, 'São Paulo', 'SP'),
 (27, 'Tocantins', 'TO');
 
-INSERT INTO Cidade (idCidade, nomeCidade, fk_idEstado) VALUES
+INSERT INTO cidade (idCidade, nomeCidade, fk_idEstado) VALUES
 (1, 'Afonso Cláudio', 8),
 (2, 'Água Doce do Norte', 8),
 (3, 'Águia Branca', 8),

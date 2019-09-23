@@ -1,0 +1,149 @@
+<div class="tab-pane active" id="abaCadastrar" role="tabpanel">
+    <div class="row">
+        <div class="col-md-8 ml-auto mr-auto">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h5 class="card-title">
+                        Cadastrar aluno
+                    </h5>
+                </div>
+
+                <?php if (!empty($this->view->instituicaoAtiva)) { ?>
+
+                    <form class="needs-validation" action="/alunoCadastrar" method="post" enctype="multipart/form-data" id="cadastrarCurso" novalidate="">
+                        <div class="card-body">
+                            <div class="row"> 
+                                <div class="col-md-6 col-sm-6 col-12 mr-auto ml-auto">
+                                    <label for="abaCadastrarInstituicaoListar">Selecione uma instituição ativa</label>
+                                    <select class="form-control" id="abaCadastrarInstituicaoListar" required>
+                                        <option selected disabled>Selecione</option>
+                                        <?php foreach ($this->view->instituicaoAtiva as $key => $instituicao) { ?>
+                                            <option value="<?php echo $instituicao['cnpj']; ?>" nome="<?php echo $instituicao['nome']; ?>" status="<?php echo $instituicao['status']; ?>">
+                                                <?php echo $instituicao['nome']; ?>
+                                            </option>
+                                        <?php
+                                            } ?>
+                                    </select>
+                                    <br />
+                                </div>
+
+                                <div class="col-md-6 col-sm-6 col-12 mr-auto ml-auto"> 
+                                    <label for="abaCadastrarCursoListar">Selecione um curso ativo</label>
+                                    <select class="form-control" name="alunoCurso" id="abaCadastrarCursoListar" required disabled>
+                                        <option selected disabled>Selecione</option>
+                                    </select>
+                                    <br />
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-9 col-sm-6 col-12">
+                                    <label>Nome do aluno</label> 
+                                    <input id="abaCadastrarNome" name="alunoNome" type="text" class="form-control" autocomplete="off" value="" required disabled>
+                                    <div class="invalid-feedback">
+                                        Insira um nome de válido
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-6 col-12">
+                                    <label>CPF</label> 
+                                    <input id="abaCadastrarCpf" name="alunoCpf" type="text" class="form-control cpf" placeholder="___.___.___-__" autocomplete="off" value="" required disabled>
+                                    <div class="invalid-feedback">
+                                        Insira um cpf válido
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-md-5 col-sm-6 col-12">
+                                    <label>E-mail</label> 
+                                    <input id="abaCadastrarEmail" name="alunoEmail" type="text" class="form-control" autocomplete="off" value="" required disabled>
+                                    <div class="invalid-feedback">
+                                        Insira um e-mail válido
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-6 col-12">
+                                    <label>Data de Nascimento</label>
+                                    <input id="abaCadastrarData" name="alunoData" type="date" class="form-control dataNascimento" placeholder="__/__/____" autocomplete="off" value="" required disabled>
+                                    <div class="invalid-feedback">
+                                        Insira uma data válida
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-6 col-12">
+                                    <label>Celular</label>
+                                    <input id="abaCadastrarCelular" name="alunoCelular" type="text" class="form-control celular" maxlength="15" autocomplete="off" value="" required disabled>
+                                    <div class="invalid-feedback">
+                                        Insira um celular válido
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 col-12">
+                                    <label>Endereço</label> 
+                                    <input id="abaCadastrarEnderecoLogradouro" name="alunoLogradouro" type="text" class="form-control" autocomplete="off" value="" required disabled>
+                                    <div class="invalid-feedback">
+                                        Insira um endereco válido
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-sm-6 col-12">
+                                    <label>Número</label>
+                                    <input id="abaCadastrarEnderecoNum" name="alunoEnderecoNum" type="text" class="form-control" autocomplete="off" value="" required disabled>
+                                    <div class="invalid-feedback">
+                                        Insira um número válido
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-6 col-12">
+                                    <label>Bairro</label>
+                                    <input id="abaCadastrarEnderecoBairro" name="alunoEnderecoBairro" type="text" class="form-control" autocomplete="off" value="" required disabled>
+                                    <div class="invalid-feedback">
+                                        Insira um bairro válido
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 col-12">
+                                    <label>Estado</label> 
+                                    <select class="form-control" name="alunoEstado" id="abaCadastrarEstado" disabled>
+                                        <option selected disabled>Selecione o estado</option>
+                                        <?php foreach ($this->view->estados as $key => $estado) { ?>
+                                            <option value="<?php echo $estado['idEstado']; ?>" nome="<?php echo $estado['nomeEstado']; ?>" uf="<?php echo $estado['uf']; ?>">
+                                                <?php echo $estado['nomeEstado']; ?>
+                                            </option>
+                                        <?php
+                                            } ?>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-6 col-sm-6 col-12">
+                                    <label>Cidade</label>
+                                    <select class="form-control" name="alunoCidade" id="abaCadastrarCidade" required disabled>
+                                        <option selected disabled>Selecione a cidade</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <br />
+                            <div class="row">
+                                <div class="ml-auto mr-auto">
+                                    <button id="btnCadastrarAluno" type="submit" class="btn btn-primary btn-round">Cadastrar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+            </div>
+            <br /><br /><br />
+        <?php } else { ?>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12 col-12 text-center">
+                        Não há instituições cadastradas (ou ativadas)
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
+        </div>
+    </div>
+</div>

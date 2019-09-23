@@ -8,15 +8,15 @@
                     </h5>
                 </div>
 
-                <?php if (!empty($this->view->instituicaoTodas)) { ?>
+                <?php if (!empty($this->view->instituicaoAtiva)) { ?>
                     <form class="needs-validation" action="/cursoAlterar" method="post" enctype="multipart/form-data" id="cadastrarCurso" novalidate="">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-8 col-12 mr-auto ml-auto">
-                                    <label for="cursoInstituicaoAlterar">Selecione uma instituição</label>
+                                <div class="col-md-6 col-12 mr-auto ml-auto">
+                                    <label for="cursoInstituicaoAlterar">Selecione uma instituição ativa</label>
                                     <select class="form-control" id="cursoInstituicaoAlterar">
                                         <option selected disabled>Selecione</option>
-                                        <?php foreach ($this->view->instituicaoTodas as $key => $instituicao) { ?>
+                                        <?php foreach ($this->view->instituicaoAtiva as $key => $instituicao) { ?>
                                             <option value="<?php echo $instituicao['cnpj']; ?>" nome="<?php echo $instituicao['nome']; ?>" status="<?php echo $instituicao['status']; ?>">
                                                 <?php echo $instituicao['nome']; ?>
                                             </option>
@@ -25,10 +25,8 @@
                                     </select>
                                     <br />
                                 </div>
-                            </div>
 
-                            <div class="row">
-                                <div class="col-md-8 col-12 mr-auto ml-auto">
+                                <div class="col-md-6 col-12 mr-auto ml-auto">
                                     <label for="cursoCadastradoAlterar">Selecione um curso</label>
                                     <select class="form-control" name="cursoId" id="cursoCadastradoAlterar" disabled>
                                         <option selected disabled>Selecione</option>
