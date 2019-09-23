@@ -8,7 +8,7 @@ create database dbsgie;
 use dbsgie;
 
 CREATE TABLE Instituicao (
-    nome varchar(30),
+    nome varchar(60),
     status tinyint(1),
     cnpj char(14),
     PRIMARY KEY (cnpj)
@@ -48,10 +48,10 @@ CREATE TABLE Alunos (
     endereco varchar(90),
     numero tinyint,
     bairro varchar(64),
-    fk_idEstado tinyint,
+    fk_idCidade int(11),
     fk_idCurso tinyint,
     PRIMARY KEY (cpf),
-    FOREIGN KEY (fk_idEstado) REFERENCES Estado (idEstado),
+    FOREIGN KEY (fk_idCidade) REFERENCES Cidade (idCidade),
     FOREIGN KEY (fk_idCurso) REFERENCES Curso (idCurso)
 );
 
