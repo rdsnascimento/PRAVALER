@@ -22,6 +22,7 @@ body {
 
 #page-content-wrapper {
   min-width: 100vw;
+  padding-bottom: 50px;
 }
 
 #wrapper.toggled #sidebar {
@@ -42,9 +43,6 @@ body {
     margin-left: -15rem;
   }
 }
-
-
-
 
 
 /* Modal alertas */
@@ -178,15 +176,7 @@ body {
   }
 }
 
-
-
-
-
-
-
-
 /* Formatacao */
-
 .nav-link {
   color: #cbbde2
 }
@@ -223,7 +213,7 @@ body {
 }
 
 .tab-pane .card {
-  margin-top: 10%;
+  margin-top: 5%;
 }
 
 body{

@@ -2,7 +2,7 @@
 session_start();
 
 /* pega o conteudo do link depois da barra */
-/* usado para o menu */
+/* usado para o menu lateral */
 $url = "$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 $url = explode('/', $url)[1];
 
@@ -14,7 +14,7 @@ $url = explode('/', $url)[1];
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>SGIE</title>
+    <title>Desafio 3</title>
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="public/assets/css/style.css" rel="stylesheet">

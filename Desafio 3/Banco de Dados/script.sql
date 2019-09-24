@@ -5652,3 +5652,35 @@ INSERT INTO cidade (idCidade, nomeCidade, fk_idEstado) VALUES
 (5562, 'Tupiratins', 27),
 (5563, 'Wanderlândia', 27),
 (5564, 'Xambioá', 27);
+
+--
+-- Carregando dados para a tabela `instituicao`
+--
+INSERT INTO instituicao (nome, status, cnpj) VALUES
+('USP', 0, '11111111000100'),
+('UFRJ', 0, '22222222000100'),
+('UFMG', 0, '33333333000100'),
+('UNICAMP', 0, '44444444000100');
+
+--
+-- Carregando dados para a tabela `curso`
+--
+INSERT INTO curso (idCurso, nome, duracao, status, fk_cnpj) VALUES
+(1, 'Arquitetura e Urbanismo', 8, 0, '11111111000100'),
+(2, 'Biomedicina', 10, 0, '11111111000100'),
+(3, 'Psicologia', 7, 0, '11111111000100'),
+(4, 'Direito', 10, 0, '22222222000100'),
+(5, 'Engenharia Civil', 10, 0, '22222222000100'),
+(6, 'Economia', 8, 0, '33333333000100'),
+(7, 'Design', 8, 0, '33333333000100'),
+(8, 'Letras', 6, 0, '33333333000100'),
+(9, 'Nutrição', 8, 0, '44444444000100');
+
+--
+-- Carregando dados para a tabela `aluno`
+--
+INSERT INTO aluno (nome, cpf, dataNascimento, email, celular, endereco, numero, bairro, fk_idCurso, fk_idCidade, fk_idEstado, status) VALUES
+('Catarina Andrade', '11111111111', '1990-01-01', 'catarina@bol.com', '(11) 1112-1111', 'R. Liberdade', 15, 'Centro', 1, 5265, 26, 0),
+('César Aquiles', '22222222222', '1991-02-02', 'cesar@bol.com', '(11) 4678-5555', 'R. Bom Retiro ', 127, 'Esperança', 4, 4500, 24, 0),
+('Heitor Uriah', '44444444444', '1993-03-03', 'heitor@bol.com', '(11) 4 4444-4444', 'R. Augusta', 66, 'Paulista', 6, 5270, 26, 0),
+('Joana Paz', '55555555555', '1994-04-04', 'joana@bol.com', '(11) 1111-1111', 'R. General Osório', 88, 'Centro', 9, 4160, 23, 0);
