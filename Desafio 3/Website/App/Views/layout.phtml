@@ -1,5 +1,11 @@
 <?php
 session_start();
+
+/* pega o conteudo do link depois da barra */
+/* usado para o menu */
+$url = "$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+$url = explode('/', $url)[1];
+
 ?>
 
 <!DOCTYPE html>
@@ -39,11 +45,11 @@ session_start();
     <div class="d-flex" id="wrapper">
         <!-- Sidebar -->
         <div class="bg-light border-right" id="sidebar">
-            <div class="sidebar-heading"><a href="/">SGIE</a></div>
+            <div class="sidebar-heading"><a class="list-group-item-action" href="/">Desafio 3 - Pravaler</a></div>
             <div class="list-group list-group-flush">
-                <a href="/instituicao" class="list-group-item list-group-item-action bg-light">Instituição</a>
-                <a href="/curso" class="list-group-item list-group-item-action bg-light">Curso</a>
-                <a href="/aluno" class="list-group-item list-group-item-action bg-light">Aluno</a>
+                <a href="/instituicao" class="list-group-item list-group-item-action bg-light <?php if($url == "instituicao") echo "menu-active"?>">Instituição</a>
+                <a href="/curso" class="list-group-item list-group-item-action bg-light <?php if($url == "curso") echo "menu-active"?>">Curso</a>
+                <a href="/aluno" class="list-group-item list-group-item-action bg-light <?php if($url == "aluno") echo "menu-active"?>">Aluno</a>
             </div>
         </div>
         <!-- fim sidebar -->
@@ -99,3 +105,4 @@ session_start();
 </body>
 
 </html>
+

@@ -55,6 +55,14 @@ class Instituicao extends Model {
         $stmt->execute();
     }
 
+    public function instituicaoDeletarVerificar(){
+        $query = "select * from curso where fk_cnpj = :cnpj";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':cnpj', $this->__get('cnpj'));
+        $stmt->execute();
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
+
     public function getInstituicoes(){
         $query = "select * from instituicao";
         $stmt = $this->db->prepare($query);

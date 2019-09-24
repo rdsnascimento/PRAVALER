@@ -32,6 +32,7 @@ class AlunoController extends Action
 		$curso = $_POST['alunoCurso'];
 		$nome = $_POST['alunoNome'];
 		$cpf = $_POST['alunoCpf'];
+		$status = $_POST['alunoStatus'];
 		$email = $_POST['alunoEmail'];
 		$dataNascimento = $_POST['alunoData'];
 		$celular = $_POST['alunoCelular'];
@@ -67,6 +68,12 @@ class AlunoController extends Action
 				$aluno->__set('fk_idCidade', $cidade);
 				$aluno->__set('fk_idEstado', $estado);
 				$aluno->__set('fk_idCurso', $curso);
+
+				if (!isset($status))
+					$aluno->__set('status', 0);
+				else
+					$aluno->__set('status', 1);
+
 				$aluno->alunoCadastrar();
 				$_SESSION["mensagem"] = $this->msgSucesso();
 				header("Location: /aluno");
@@ -90,6 +97,7 @@ class AlunoController extends Action
 		$bairro = $_POST['alunoEnderecoBairro'];
 		$estado = $_POST['alunoEstado'];
 		$cidade = $_POST['alunoCidade'];
+		$status = $_POST['alunoStatus'];
 
 		if (
 			!isset($curso) || !isset($nome) || !isset($cpf) ||
@@ -113,29 +121,36 @@ class AlunoController extends Action
 			$aluno->__set('fk_idCidade', $cidade);
 			$aluno->__set('fk_idEstado', $estado);
 			$aluno->__set('fk_idCurso', $curso);
-			
+
+			if (!isset($status))
+					$aluno->__set('status', 0);
+				else
+					$aluno->__set('status', 1);
+
 			$aluno->alunoAlterar();
 			$_SESSION["mensagem"] = $this->msgSucesso('alterado');
 			header("Location: /aluno");
 		}
 	}
 
-	public function alunoDeletar(){
+	public function alunoDeletar()
+	{
 		session_start();
-        if (!isset($_POST['cpf'])) {
-            $_SESSION["mensagem"] = $this->msgErro('Você deve escolher um aluno!', 'Falha ao tentar deletar!');
-            header("Location: /aluno#abaDeletar");
-        } else {
-            $aluno = Container::getModel('Aluno');
-            $aluno->__set('cpf', $_POST['cpf']);
-            $aluno->alunoDeletar();
+		if (!isset($_POST['cpf'])) {
+			$_SESSION["mensagem"] = $this->msgErro('Você deve escolher um aluno!', 'Falha ao tentar deletar!');
+			header("Location: /aluno#abaDeletar");
+		} else {
+			$aluno = Container::getModel('Aluno');
+			$aluno->__set('cpf', $_POST['cpf']);
+			$aluno->alunoDeletar();
 
-            $_SESSION["mensagem"] = $this->msgSucesso('deletado');
-            header("Location: /aluno");
-        }
+			$_SESSION["mensagem"] = $this->msgSucesso('deletado');
+			header("Location: /aluno");
+		}
 	}
 
-	public function alunoAlterarListaInstituicao(){
+	public function alunoAlterarListaInstituicao()
+	{
 		$curso = Container::getModel('Curso');
 		$curso->__set('idCurso', $_POST['cursoId']);
 		echo json_encode($curso->getInstituicao());

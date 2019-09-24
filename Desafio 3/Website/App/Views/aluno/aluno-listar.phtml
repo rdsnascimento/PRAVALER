@@ -25,6 +25,7 @@
                                             <th>UF</th>
                                             <th>Curso</th>
                                             <th>Instituição</th>
+                                            <th>Status</th>
                                         </tr>
                                     </thead>
 
@@ -32,16 +33,17 @@
                                         <?php
                                             foreach ($this->view->alunoListar as $key => $aluno) { ?>
                                             <tr>
-                                                <td><?php echo $aluno['nome']?></td>
-                                                <td><?php echo $aluno['cpf']?></td>
-                                                <td><?php echo $aluno['dataNascimento']?></td>
-                                                <td><?php echo $aluno['email']?></td>
-                                                <td><?php echo $aluno['celular']?></td>
-                                                <td><?php echo ($aluno['endereco'].", n. ".$aluno['numero']." - ".$aluno['bairro']); ?></td>
-                                                <td><?php echo $aluno['nomeCidade']?></td>
-                                                <td><?php echo $aluno['uf']?></td>
-                                                <td><?php echo $aluno['nomeCurso']?></td>
-                                                <td><?php echo $aluno['nomeInstituicao']?></td>
+                                                <td><?php echo $aluno['nome'] ?></td>
+                                                <td><?php echo $aluno['cpf'] ?></td>
+                                                <td><?php echo $aluno['dataNascimento'] ?></td>
+                                                <td><?php echo $aluno['email'] ?></td>
+                                                <td><?php echo $aluno['celular'] ?></td>
+                                                <td><?php echo ($aluno['endereco'] . ", n. " . $aluno['numero'] . " - " . $aluno['bairro']); ?></td>
+                                                <td><?php echo $aluno['nomeCidade'] ?></td>
+                                                <td><?php echo $aluno['uf'] ?></td>
+                                                <td><?php echo $aluno['nomeCurso'] ?></td>
+                                                <td><?php echo $aluno['nomeInstituicao'] ?></td>
+                                                <td><?php if ($aluno['status']) echo "Desativado"; else echo "Ativado"; ?></td>
                                             </tr>
                                         <?php
                                             } ?>
@@ -50,16 +52,16 @@
                             </div>
                         </div>
                     </div>
-            </div>
-        <?php } else { ?>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-12 col-12 text-center">
-                        Não há alunos cadastrados (ou ativos)
+                <?php } else { ?>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12 col-12 text-center">
+                                Não há alunos cadastrados (ou ativos)
+                            </div>
+                        </div>
                     </div>
-                </div>
+                <?php } ?>
             </div>
-        <?php } ?>
         </div>
     </div>
     <br /><br /><br />

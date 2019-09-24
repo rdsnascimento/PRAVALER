@@ -81,13 +81,20 @@ class InstituicaoController extends Action
 
 	public function instituicaoDeletar()
 	{
+		session_start();
+		
 		$instituicao = Container::getModel('Instituicao');
 		$instituicao->__set('cnpj', $_POST['instituicaoDeletar']);
-		$instituicao->instituicaoDeletar();
 
-		session_start();
-		$_SESSION["mensagem"] = $this->msgSucesso('deletada');
-		header("Location: /instituicao");
+		/* verifica se a instituicao tem alunos antes de deletar */
+		if($instituicao->instituicaoDeletarVerificar() != ''){
+			$_SESSION["mensagem"] = $this->msgErro('A instituição tem curso associado!', 'Não é possível deletar!');
+			header("Location: /instituicao");
+		} else {
+			$instituicao->instituicaoDeletar();
+			$_SESSION["mensagem"] = $this->msgSucesso('deletada');
+			header("Location: /instituicao");
+		}
 	}
 
 	/* Modal de alerta */
@@ -114,12 +121,12 @@ class InstituicaoController extends Action
 		return $mensagem;
 	}
 
-	public function msgErro($msgAlerta = '')
+	public function msgErro($msgAlerta = '', $msgPrincipal = "Ooops! Falha ao cadastrar a instituição!")
 	{
 		$mensagem = $this->modal();
 		$mensagem = str_replace("[modalTipo]", "modal-erro", $mensagem);
 		$mensagem = str_replace("[modalIcone]", "&#xE5CD;", $mensagem);
-		$mensagem = str_replace("[modalTitulo]", "Ooops! Falha ao cadastrar a instituição!", $mensagem);
+		$mensagem = str_replace("[modalTitulo]", $msgPrincipal, $mensagem);
 		$mensagem = str_replace("[modalMensagem]", $msgAlerta, $mensagem);
 		$mensagem = str_replace("[modalBtn]", "btn-success", $mensagem);
 		return $mensagem;

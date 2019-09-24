@@ -245,3 +245,8 @@ body{
   border-radius: 5px; 
   display: none
 }
+
+.menu-active{
+  background-color: #e2e5e8 !important;
+  font-weight: 700;
+}

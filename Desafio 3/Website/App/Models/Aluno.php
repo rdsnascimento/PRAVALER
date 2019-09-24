@@ -17,6 +17,7 @@ class Aluno extends Model
     private $fk_idCidade;
     private $fk_idEstado;
     private $fk_idCurso;
+    private $status;
 
     public function __get($atributo)
     {
@@ -30,9 +31,10 @@ class Aluno extends Model
 
     public function alunoListar()
     {
-        $query = "select aluno.nome, cpf, dataNascimento, email, celular, endereco, numero, bairro, nomeCidade, uf, curso.nome as nomeCurso, instituicao.nome as nomeInstituicao 
+        $query = "select aluno.nome, cpf, dataNascimento, email, celular, endereco, numero, bairro, nomeCidade, uf, curso.nome as nomeCurso, instituicao.nome as nomeInstituicao, aluno.status as status 
         from instituicao, curso, aluno, cidade, estado 
-        where fk_idCidade = idCidade and aluno.fk_idEstado = idEstado and fk_idCurso = idCurso and cnpj = fk_cnpj"; 
+        where fk_idCidade = idCidade and aluno.fk_idEstado = idEstado and fk_idCurso = idCurso and cnpj = fk_cnpj
+        and instituicao.status = 0 and curso.status = 0"; 
         $stmt = $this->db->prepare($query);
         $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
@@ -40,7 +42,7 @@ class Aluno extends Model
 
     public function alunoCadastrar()
     {
-        $query = "insert into aluno(nome, cpf, dataNascimento, email, celular, endereco, numero, bairro, fk_idCidade, fk_idEstado, fk_idCurso) values(:nome, :cpf, :dataNascimento, :email, :celular, :endereco, :numero, :bairro, :fk_idCidade, :fk_idEstado, :fk_idCurso)";
+        $query = "insert into aluno(nome, cpf, dataNascimento, email, celular, endereco, numero, bairro, fk_idCidade, fk_idEstado, fk_idCurso, status) values(:nome, :cpf, :dataNascimento, :email, :celular, :endereco, :numero, :bairro, :fk_idCidade, :fk_idEstado, :fk_idCurso, :status)";
         $stmt = $this->db->prepare($query);
         $stmt->bindValue(':nome', $this->__get('nome'));
         $stmt->bindValue(':cpf', $this->__get('cpf'));
@@ -53,6 +55,7 @@ class Aluno extends Model
         $stmt->bindValue(':fk_idCidade', $this->__get('fk_idCidade'));
         $stmt->bindValue(':fk_idEstado', $this->__get('fk_idEstado'));
         $stmt->bindValue(':fk_idCurso', $this->__get('fk_idCurso'));
+        $stmt->bindValue(':status', $this->__get('status'));
         $stmt->execute();
         return $this;
     }
@@ -68,7 +71,8 @@ class Aluno extends Model
             bairro = :bairro,
             fk_idCidade = :fk_idCidade,
             fk_idEstado = :fk_idEstado,
-            fk_idCurso = :fk_idCurso
+            fk_idCurso = :fk_idCurso,
+            status = :status
             where cpf = :cpf";
         $stmt = $this->db->prepare($query);
         $stmt->bindValue(':nome', $this->__get('nome'));
@@ -82,6 +86,7 @@ class Aluno extends Model
         $stmt->bindValue(':fk_idCidade', $this->__get('fk_idCidade'));
         $stmt->bindValue(':fk_idEstado', $this->__get('fk_idEstado'));
         $stmt->bindValue(':fk_idCurso', $this->__get('fk_idCurso'));
+        $stmt->bindValue(':status', $this->__get('status'));
         $stmt->execute();
         return $this;
     }

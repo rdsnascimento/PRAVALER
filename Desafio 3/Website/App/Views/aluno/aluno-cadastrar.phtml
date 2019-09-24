@@ -12,7 +12,7 @@
 
                     <form class="needs-validation" action="/alunoCadastrar" method="post" enctype="multipart/form-data" id="cadastrarCurso" novalidate="">
                         <div class="card-body">
-                            <div class="row"> 
+                            <div class="row">
                                 <div class="col-md-6 col-sm-6 col-12 mr-auto ml-auto">
                                     <label for="abaCadastrarInstituicaoListar">Selecione uma instituição ativa</label>
                                     <select class="form-control" id="abaCadastrarInstituicaoListar" required>
@@ -27,7 +27,7 @@
                                     <br />
                                 </div>
 
-                                <div class="col-md-6 col-sm-6 col-12 mr-auto ml-auto"> 
+                                <div class="col-md-6 col-sm-6 col-12 mr-auto ml-auto">
                                     <label for="abaCadastrarCursoListar">Selecione um curso ativo</label>
                                     <select class="form-control" name="alunoCurso" id="abaCadastrarCursoListar" required disabled>
                                         <option selected disabled>Selecione</option>
@@ -37,25 +37,34 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-md-9 col-sm-6 col-12">
-                                    <label>Nome do aluno</label> 
+                                <div class="col-md-6 col-sm-6 col-12">
+                                    <label>Nome do aluno</label>
                                     <input id="abaCadastrarNome" name="alunoNome" type="text" class="form-control" autocomplete="off" value="" required disabled>
                                     <div class="invalid-feedback">
                                         Insira um nome de válido
                                     </div>
                                 </div>
                                 <div class="col-md-3 col-sm-6 col-12">
-                                    <label>CPF</label> 
+                                    <label>CPF</label>
                                     <input id="abaCadastrarCpf" name="alunoCpf" type="text" class="form-control cpf" placeholder="___.___.___-__" autocomplete="off" value="" required disabled>
                                     <div class="invalid-feedback">
                                         Insira um cpf válido
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-12">
+                                    <div class="form-group">
+                                        <label>Status</label>
+                                        <div class="custom-control custom-checkbox" style="margin-top: 5%">
+                                            <input name="alunoStatus" type="checkbox" class="custom-control-input" id="alunoStatus">
+                                            <label class="custom-control-label" for="alunoStatus">Desativado</label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <br />
                             <div class="row">
                                 <div class="col-md-5 col-sm-6 col-12">
-                                    <label>E-mail</label> 
+                                    <label>E-mail</label>
                                     <input id="abaCadastrarEmail" name="alunoEmail" type="email" class="form-control" autocomplete="off" value="" required disabled>
                                     <div class="invalid-feedback">
                                         Insira um e-mail válido
@@ -79,8 +88,8 @@
                             <br />
 
                             <div class="row">
-                                <div class="col-md-6 col-sm-6 col-12">
-                                    <label>Endereço</label> 
+                                <div class="col-md-5 col-sm-6 col-12">
+                                    <label>Endereço</label>
                                     <input id="abaCadastrarEnderecoLogradouro" name="alunoLogradouro" type="text" class="form-control" autocomplete="off" value="" required disabled>
                                     <div class="invalid-feedback">
                                         Insira um endereco válido
@@ -93,7 +102,7 @@
                                         Insira um número válido
                                     </div>
                                 </div>
-                                <div class="col-md-4 col-sm-6 col-12">
+                                <div class="col-md-5 col-sm-6 col-12">
                                     <label>Bairro</label>
                                     <input id="abaCadastrarEnderecoBairro" name="alunoEnderecoBairro" type="text" class="form-control" autocomplete="off" value="" required disabled>
                                     <div class="invalid-feedback">
@@ -105,7 +114,7 @@
 
                             <div class="row">
                                 <div class="col-md-6 col-sm-6 col-12">
-                                    <label>Estado</label> 
+                                    <label>Estado</label>
                                     <select class="form-control" name="alunoEstado" id="abaCadastrarEstado" disabled>
                                         <option selected disabled>Selecione o estado</option>
                                         <?php foreach ($this->view->estados as $key => $estado) { ?>
@@ -133,17 +142,17 @@
                             </div>
                         </div>
                     </form>
+                <?php } else { ?>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12 col-12 text-center">
+                                Não há instituições cadastradas (ou ativadas)
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
             </div>
             <br /><br /><br />
-        <?php } else { ?>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-12 col-12 text-center">
-                        Não há instituições cadastradas (ou ativadas)
-                    </div>
-                </div>
-            </div>
-        <?php } ?>
         </div>
     </div>
 </div>

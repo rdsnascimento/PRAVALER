@@ -1,65 +1,58 @@
 <div class="tab-pane active" id="abaListar" role="tabpanel">
     <div class="row">
-        <div class="col-md-8 ml-auto mr-auto">
+        <div class="col-md-11 ml-auto mr-auto">
             <div class="card">
                 <div class="card-header text-center">
                     <h5 class="card-title">
                         Listar cursos
                     </h5>
-                    <!-- <sup>Cadastre uma nova instituição nos campos abaixo</sup> -->
                 </div>
 
-                <?php if (!empty($this->view->instituicaoAtiva)) { ?>
-
+                <?php if (!empty($this->view->cursoListar)) { ?>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-8 col-12 mr-auto ml-auto">
-                                <label for="cursoInstituicaoListar">Selecione uma instituição ativa</label>
-                                <select class="form-control" name="cursoInstituicao" id="cursoInstituicaoListar">
-                                    <option selected disabled>Selecione</option>
-                                    <?php foreach ($this->view->instituicaoAtiva as $key => $instituicao) { ?>
-                                        <option value="<?php echo $instituicao['cnpj']; ?>" nome="<?php echo $instituicao['nome']; ?>" status="<?php echo $instituicao['status']; ?>">
-                                            <?php echo $instituicao['nome']; ?>
-                                        </option>
-                                    <?php
-                                        } ?>
-                                </select>
-                                <br />
-                            </div>
-                        </div>
+                            <div class="col-md-12 mr-auto ml-auto">
+                                <table id="tabelaResultado" class="table table-striped table-bordered" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>IdCurso</th>
+                                            <th>Curso</th>
+                                            <th>Semestres</th>
+                                            <th>Situação</th>
+                                            <th>Instituição</th>
+                                            <th>CNPJ</th>
+                                        </tr>
+                                    </thead>
 
-                        <div class="row">
-                            <div class="col-md-8 col-12 mr-auto ml-auto">
-                                <label for="cursoCadastrado">Selecione um curso ativo</label>
-                                <select class="form-control" name="cursoCadastrado" id="cursoCadastrado" disabled>
-                                    <option selected disabled>Selecione</option>
-                                </select>
-                                <br />
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-8 mr-auto ml-auto">
-                                <div id="cursoListarResultado">
-                                    Id do curso: <span id="cursolId"></span><br />
-                                    Curso: <span id="cursolNome"></span><br />
-                                    Duração (semestres): <span id="cursolDuracao"></span><br />
-                                    Situação: <span id="cursolStatus"></span><br />
-                                    CNPJ da Instituição: <span id="cursolCnpj"></span><br />
-                                </div>
+                                    <tbody>
+                                        <?php
+                                            foreach ($this->view->cursoListar as $key => $aluno) { ?>
+                                            <tr>
+                                                <td><?php echo $aluno['idCurso'] ?></td>
+                                                <td><?php echo $aluno['nomeCurso'] ?></td>
+                                                <td><?php echo $aluno['duracao'] ?></td>
+                                                <td><?php if ($aluno['status']) echo "Desativado";
+                                                            else echo "Ativado"; ?></td>
+                                                <td><?php echo $aluno['nomeInstituicao'] ?></td>
+                                                <td><?php echo preg_replace("/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/", "\$1.\$2.\$3/\$4-\$5", $aluno['cnpj']); ?></td>
+                                            </tr>
+                                        <?php
+                                            } ?>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
-            </div>
-        <?php } else { ?>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-12 col-12 text-center">
-                        Não há instituições cadastradas (ou ativadas)
+                <?php } else { ?>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12 col-12 text-center">
+                                Não há instituições cadastradas (ou ativadas)
+                            </div>
+                        </div>
                     </div>
-                </div>
+                <?php } ?>
             </div>
-        <?php } ?>
         </div>
     </div>
 </div>

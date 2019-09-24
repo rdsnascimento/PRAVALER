@@ -60,6 +60,7 @@ $(document).ready(function () {
         $(`#${aba}EnderecoBairro`).prop("disabled", true);
         $(`#${aba}Estado`).prop("disabled", true);
         $(`#${aba}Cidade`).prop("disabled", true);
+        $(`#${aba}Status`).prop("disabled", true);
     }
 
     /* ativa os campos */
@@ -72,8 +73,10 @@ $(document).ready(function () {
         $(`#${aba}EnderecoNum`).prop("disabled", false);
         $(`#${aba}EnderecoBairro`).prop("disabled", false);
         $(`#${aba}Estado`).prop("disabled", false);
+        $(`#${aba}Status`).prop("disabled", false);
         if (aba != "abaAlterar")
             $(`#${aba}Cpf`).prop("disabled", false);
+        
     }
 
     /* lista cidades */
@@ -162,6 +165,7 @@ $(document).ready(function () {
         let cursoId = $(this).find(':selected').attr('fk_idCurso');
         let estadoId = $(this).find(':selected').attr('fk_idEstado');
         let cidadeId = $(this).find(':selected').attr('fk_idCidade');
+        let status = $(this).find(':selected').attr('status');
 
         /* descobre a instituicao */
         $.ajax({
@@ -189,14 +193,13 @@ $(document).ready(function () {
                 $("#abaAlterarEnderecoLogradouro").val(endereco);
                 $("#abaAlterarEnderecoNum").val(numero);
                 $("#abaAlterarEnderecoBairro").val(bairro);
+                if (status == 0) {
+                    $("#abaAlterarStatus").prop('checked', false);
+                } else {
+                    $("#abaAlterarStatus").prop('checked', true);
+                }
             }
         });
     });
 
-});
-
-$(document).ready(function() {
-    $('#tabelaResultado').DataTable({
-        responsive: true
-    });
 });

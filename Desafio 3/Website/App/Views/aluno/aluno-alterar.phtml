@@ -17,7 +17,7 @@
                                     <select class="form-control" id="abaAlterarSelAluno">
                                         <option selected disabled>Selecione</option>
                                         <?php foreach ($this->view->alunos as $key => $aluno) { ?>
-                                            <option value="<?php echo $aluno['cpf']; ?>" nome="<?php echo $aluno['nome']; ?>" data="<?php echo $aluno['dataNascimento']; ?>" email="<?php echo  $aluno['email']; ?>" celular="<?php echo $aluno['celular']; ?>" endereco="<?php echo $aluno['endereco']; ?>" numero="<?php echo $aluno['numero']; ?>" bairro="<?php echo $aluno['bairro']; ?>" fk_idCidade="<?php echo $aluno['fk_idCidade'] ?>" fk_idEstado="<?php echo $aluno['fk_idEstado'] ?>" fk_idCurso="<?php echo $aluno['fk_idCurso'] ?>">
+                                            <option value="<?php echo $aluno['cpf']; ?>" nome="<?php echo $aluno['nome']; ?>" data="<?php echo $aluno['dataNascimento']; ?>" email="<?php echo  $aluno['email']; ?>" celular="<?php echo $aluno['celular']; ?>" endereco="<?php echo $aluno['endereco']; ?>" numero="<?php echo $aluno['numero']; ?>" bairro="<?php echo $aluno['bairro']; ?>" fk_idCidade="<?php echo $aluno['fk_idCidade'] ?>" fk_idEstado="<?php echo $aluno['fk_idEstado'] ?>" fk_idCurso="<?php echo $aluno['fk_idCurso'] ?>" status="<?php echo $aluno['status'] ?>">
                                                 <?php echo $aluno['nome']; ?>
                                             </option>
                                         <?php
@@ -28,7 +28,7 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-md-9 col-sm-6 col-12">
+                                <div class="col-md-6 col-sm-6 col-12">
                                     <label>Nome do aluno</label>
                                     <input id="abaAlterarNome" name="alunoNome" type="text" class="form-control" autocomplete="off" value="" required disabled>
                                     <div class="invalid-feedback">
@@ -41,6 +41,15 @@
                                     <input id="abaAlterarCpf" type="text" class="form-control cpf" placeholder="___.___.___-__" autocomplete="off" value="" required disabled>
                                     <div class="invalid-feedback">
                                         Insira um cpf válido
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-12">
+                                    <div class="form-group">
+                                        <label>Status</label>
+                                        <div class="custom-control custom-checkbox" style="margin-top: 5%">
+                                            <input name="alunoStatus" type="checkbox" class="custom-control-input" id="abaAlterarStatus" disabled>
+                                            <label class="custom-control-label" for="abaAlterarStatus">Desativado</label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -141,7 +150,7 @@
                                     <br />
                                 </div>
                             </div>
-                            <br/>
+                            <br />
                             <div class="row">
                                 <div class="ml-auto mr-auto">
                                     <button id="btnAlterarAluno" type="submit" class="btn btn-primary btn-round">Alterar</button>
@@ -149,17 +158,17 @@
                             </div>
                         </div>
                     </form>
-            </div>
-        <?php } else { ?>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-12 col-12 text-center">
-                        Não há alunos cadastrados
+                <?php } else { ?>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12 col-12 text-center">
+                                Não há alunos cadastrados
+                            </div>
+                        </div>
                     </div>
-                </div>
+                <?php } ?>
             </div>
-        <?php } ?>
-        <br/><br/>
+            <br /><br />
         </div>
     </div>
 </div>

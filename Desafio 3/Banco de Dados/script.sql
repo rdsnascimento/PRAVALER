@@ -51,6 +51,7 @@ CREATE TABLE aluno (
     fk_idCurso tinyint,
     fk_idCidade int(11),
     fk_idEstado tinyint,
+    status tinyint(1),
     PRIMARY KEY (cpf),
     FOREIGN KEY (fk_idCurso) REFERENCES Curso (idCurso),
     FOREIGN KEY (fk_idCidade) REFERENCES Cidade (idCidade),

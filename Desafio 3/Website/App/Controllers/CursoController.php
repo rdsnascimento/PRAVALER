@@ -13,7 +13,10 @@ class CursoController extends Action
     {
         $instituicao = Container::getModel('Instituicao');
         $this->view->instituicaoAtiva = $instituicao->getInstituicoesAtivas();
-        // $this->view->instituicaoTodas = $instituicao->getInstituicoesAtivas(); //se depois decidir mudar
+        
+        $curso = Container::getModel('Curso');
+        $this->view->cursoListar = $curso->cursoListarCompleto();
+
         $this->render('curso', 'layout');
     }
 
@@ -100,10 +103,16 @@ class CursoController extends Action
         } else {
             $curso = Container::getModel('Curso');
             $curso->__set('idCurso', $_POST['cursoId']);
-            $curso->cursoDeletar();
-
-            $_SESSION["mensagem"] = $this->msgSucesso('deletado');
-            header("Location: /curso");
+            
+            /* verifica se o curso tem aluno antes de deletar */
+            if($curso->cursoDeletarVerificar() != ''){
+                $_SESSION["mensagem"] = $this->msgErro('Esse curso têm alunos associados!', 'Falha ao tentar deletar!');
+                header("Location: /curso#abaDeletar");
+            } else {
+                $curso->cursoDeletar();
+                $_SESSION["mensagem"] = $this->msgSucesso('deletado');
+                header("Location: /curso");
+            }
         }
     }
 

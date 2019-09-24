@@ -56,6 +56,16 @@ class Curso extends Model {
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
+    public function cursoListarCompleto(){
+        $query = "select instituicao.nome as nomeInstituicao, idCurso, curso.nome as nomeCurso, duracao, curso.status, cnpj 
+        from curso, instituicao 
+        where fk_cnpj = cnpj and instituicao.status = 0";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':fk_cnpj', $this->__get('fk_cnpj'));
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
     public function cursoListarAtivos(){
         $query = "select * from curso where fk_cnpj = :fk_cnpj and status = 0";
         $stmt = $this->db->prepare($query);
@@ -69,6 +79,14 @@ class Curso extends Model {
         $stmt = $this->db->prepare($query);
         $stmt->bindValue(':idCurso', $this->__get('idCurso'));
         $stmt->execute();
+    }
+
+    public function cursoDeletarVerificar(){
+        $query = "select * from aluno where fk_idCurso = :idCurso";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':idCurso', $this->__get('idCurso'));
+        $stmt->execute();
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
 
     public function getInstituicao(){
