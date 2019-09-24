@@ -86,6 +86,24 @@ class Route extends Bootstrap {
 			'action' => 'alunoCadastrar'
 		);
 
+		$routes['alunoAlterar'] = array(
+			'route' => '/alunoAlterar',
+			'controller' => 'alunoController',
+			'action' => 'alunoAlterar'
+		);
+
+		$routes['alunoDeletar'] = array(
+			'route' => '/alunoDeletar',
+			'controller' => 'alunoController',
+			'action' => 'alunoDeletar'
+		);
+
+		$routes['alunoAlterarListaInstituicao'] = array(
+			'route' => '/alunoAlterarListaInstituicao',
+			'controller' => 'alunoController',
+			'action' => 'alunoAlterarListaInstituicao'
+		);
+
 		$routes['cidadeListar'] = array(
 			'route' => '/cidadeListar',
 			'controller' => 'alunoController',

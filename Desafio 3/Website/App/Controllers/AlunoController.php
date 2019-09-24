@@ -16,6 +16,10 @@ class AlunoController extends Action
 		$estado = Container::getModel('Estado');
 		$this->view->estados = $estado->getEstados();
 
+		$aluno = Container::getModel('Aluno');
+		$this->view->alunos = $aluno->getAlunos();
+		$this->view->alunoListar = $aluno->alunoListar();
+
 		$this->render('aluno', 'layout');
 	}
 
@@ -34,15 +38,16 @@ class AlunoController extends Action
 		$endereco = $_POST['alunoLogradouro'];
 		$numero = $_POST['alunoEnderecoNum'];
 		$bairro = $_POST['alunoEnderecoBairro'];
+		$estado = $_POST['alunoEstado'];
 		$cidade = $_POST['alunoCidade'];
 
 		if (
 			!isset($curso) || !isset($nome) || !isset($cpf) ||
 			!isset($email) || !isset($dataNascimento) || !isset($celular) ||
-			!isset($endereco) || !isset($numero) || !isset($bairro) || !isset($cidade)
+			!isset($endereco) || !isset($numero) || !isset($bairro) || !isset($cidade) || !isset($estado)
 		) {
 			$_SESSION["mensagem"] = $this->msgErro('Você deve preencher todos os campos!', 'Falha ao cadastrar o aluno');
-			header("Location: /aluno#abaAlterar");
+			header("Location: /aluno#abaCadastrar");
 		} else {
 			$cpf = str_replace(".", "", $cpf);
 			$cpf = str_replace("-", "", $cpf);
@@ -60,12 +65,80 @@ class AlunoController extends Action
 				$aluno->__set('numero', $numero);
 				$aluno->__set('bairro', $bairro);
 				$aluno->__set('fk_idCidade', $cidade);
+				$aluno->__set('fk_idEstado', $estado);
 				$aluno->__set('fk_idCurso', $curso);
 				$aluno->alunoCadastrar();
 				$_SESSION["mensagem"] = $this->msgSucesso();
 				header("Location: /aluno");
 			}
 		}
+	}
+
+	public function alunoAlterar()
+	{
+		session_start();
+		$aluno = Container::getModel('Aluno');
+
+		$curso = $_POST['alunoCurso'];
+		$nome = $_POST['alunoNome'];
+		$cpf = $_POST['alunoCpf'];
+		$email = $_POST['alunoEmail'];
+		$dataNascimento = $_POST['alunoData'];
+		$celular = $_POST['alunoCelular'];
+		$endereco = $_POST['alunoLogradouro'];
+		$numero = $_POST['alunoEnderecoNum'];
+		$bairro = $_POST['alunoEnderecoBairro'];
+		$estado = $_POST['alunoEstado'];
+		$cidade = $_POST['alunoCidade'];
+
+		if (
+			!isset($curso) || !isset($nome) || !isset($cpf) ||
+			!isset($email) || !isset($dataNascimento) || !isset($celular) ||
+			!isset($endereco) || !isset($numero) || !isset($bairro) || !isset($cidade) || !isset($estado)
+		) {
+			$_SESSION["mensagem"] = $this->msgErro('Você deve preencher todos os campos!', 'Falha ao alterar o aluno');
+			header("Location: /aluno#abaAlterar");
+		} else {
+			$cpf = str_replace(".", "", $cpf);
+			$cpf = str_replace("-", "", $cpf);
+			$aluno->__set('cpf', $cpf);
+
+			$aluno->__set('nome', $nome);
+			$aluno->__set('dataNascimento', $dataNascimento);
+			$aluno->__set('email', $email);
+			$aluno->__set('celular', $celular);
+			$aluno->__set('endereco', $endereco);
+			$aluno->__set('numero', $numero);
+			$aluno->__set('bairro', $bairro);
+			$aluno->__set('fk_idCidade', $cidade);
+			$aluno->__set('fk_idEstado', $estado);
+			$aluno->__set('fk_idCurso', $curso);
+			
+			$aluno->alunoAlterar();
+			$_SESSION["mensagem"] = $this->msgSucesso('alterado');
+			header("Location: /aluno");
+		}
+	}
+
+	public function alunoDeletar(){
+		session_start();
+        if (!isset($_POST['cpf'])) {
+            $_SESSION["mensagem"] = $this->msgErro('Você deve escolher um aluno!', 'Falha ao tentar deletar!');
+            header("Location: /aluno#abaDeletar");
+        } else {
+            $aluno = Container::getModel('Aluno');
+            $aluno->__set('cpf', $_POST['cpf']);
+            $aluno->alunoDeletar();
+
+            $_SESSION["mensagem"] = $this->msgSucesso('deletado');
+            header("Location: /aluno");
+        }
+	}
+
+	public function alunoAlterarListaInstituicao(){
+		$curso = Container::getModel('Curso');
+		$curso->__set('idCurso', $_POST['cursoId']);
+		echo json_encode($curso->getInstituicao());
 	}
 
 	public function cidadeListar()

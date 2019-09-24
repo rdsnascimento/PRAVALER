@@ -1,0 +1,60 @@
+<div class="tab-pane" id="abaDeletar" role="tabpanel">
+    <div class="row">
+        <div class="col-md-8 ml-auto mr-auto">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h5 class="card-title">Deletar alunos</h5>
+                </div>
+
+                <?php if (!empty($this->view->alunos)) { ?>
+                    <form class="needs-validation" action="/alunoDeletar" method="post" enctype="multipart/form-data" id="deletarAluno" novalidate="">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-8 col-12 mr-auto ml-auto">
+                                    <label for="abaDeletarSelAluno">Selecione uma instituição ativa</label>
+                                    <select class="form-control" name="cpf" id="abaDeletarSelAluno">
+                                        <option selected disabled>Selecione</option>
+                                        <?php foreach ($this->view->alunos as $key => $aluno) { ?>
+                                            <option value="<?php echo $aluno['cpf']; ?>" nome="<?php echo $aluno['nome']; ?>" data="<?php echo $aluno['dataNascimento']; ?>" email="<?php echo  $aluno['email']; ?>" celular="<?php echo $aluno['celular']; ?>" endereco="<?php echo $aluno['endereco']; ?>" numero="<?php echo $aluno['numero']; ?>" bairro="<?php echo $aluno['bairro']; ?>" fk_idCidade="<?php echo $aluno['fk_idCidade'] ?>" fk_idEstado="<?php echo $aluno['fk_idEstado'] ?>" fk_idCurso="<?php echo $aluno['fk_idCurso'] ?>">
+                                                <?php echo $aluno['nome']; ?>
+                                            </option>
+                                        <?php
+                                            } ?>
+                                    </select>
+                                    <br />
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-8 mr-auto ml-auto">
+                                    <div id="abaDeletarResultado">
+                                        Nome: <span id="abaDeletarNome"></span><br />
+                                        CPF: <span id="abaDeletarCpf"></span><br />
+                                        Data de Nascimento: <span id="abaDeletarData"></span><br />
+                                        E-mail: <span id="abaDeletarEmail"></span><br />
+                                        Celular: <span id="abaDeletarCelular"></span><br />
+                                    </div>
+                                </div>
+                            </div>
+                            <br/>
+
+                            <div class="row">
+                                <div class="ml-auto mr-auto">
+                                    <button id="btnDeletarCurso" type="submit" class="btn btn-primary btn-round">Deletar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+            </div>
+        <?php } else { ?>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12 col-12 text-center">
+                        Não há alunos cadastrados
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
+        </div>
+    </div>
+</div>

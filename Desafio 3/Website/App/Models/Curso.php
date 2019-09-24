@@ -70,4 +70,12 @@ class Curso extends Model {
         $stmt->bindValue(':idCurso', $this->__get('idCurso'));
         $stmt->execute();
     }
+
+    public function getInstituicao(){
+        $query = "select * from curso where idCurso = :idCurso";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindValue(':idCurso', $this->__get('idCurso'));
+        $stmt->execute();
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
 }

@@ -17,7 +17,7 @@ class Estado extends Model {
     }
 
     public function getEstados(){
-        $query = "select * from estado";
+        $query = "select * from estado order by nomeEstado";
         $stmt = $this->db->prepare($query);
         $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);

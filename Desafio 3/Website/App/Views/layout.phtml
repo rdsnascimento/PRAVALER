@@ -13,6 +13,11 @@ session_start();
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="public/assets/css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    <!-- datatable -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.1.5/css/fixedHeader.bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap.min.css">
 </head>
 
 <body>
@@ -54,10 +59,10 @@ session_start();
                 <div class="collapse navbar-collapse justify-content-center" id="navbarPrincipal">
                     <ul class="nav nav-tabs">
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#abaListar">Listar</a>
+                            <a class="nav-link active" data-toggle="tab" href="#abaListar">Listar</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" data-toggle="tab" href="#abaCadastrar">Cadastrar</a>
+                            <a class="nav-link" data-toggle="tab" href="#abaCadastrar">Cadastrar</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#abaAlterar">Alterar</a>
@@ -84,6 +89,13 @@ session_start();
     <script src="public/assets/js/jquery.mask.min.js"></script>
     <script src="public/assets/js/jquery.mask.config.js"></script>
     <script src="public/assets/js/jquery.scripts.config.js"></script>
+
+    <!-- datatables -->
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/fixedheader/3.1.5/js/dataTables.fixedHeader.min.js"></script> 
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script> 
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap.min.js"></script> 
 </body>
 
 </html>

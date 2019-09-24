@@ -1,0 +1,66 @@
+<div class="tab-pane active" id="abaListar" role="tabpanel">
+    <div class="row">
+        <div class="col-md-11 ml-auto mr-auto">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h5 class="card-title">
+                        Listar alunos
+                    </h5>
+                </div>
+
+                <?php if (!empty($this->view->alunoListar)) { ?>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12 mr-auto ml-auto">
+                                <table id="tabelaResultado" class="table table-striped table-bordered" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Nome</th>
+                                            <th>CPF</th>
+                                            <th>Nascimento</th>
+                                            <th>E-mail</th>
+                                            <th>Celular</th>
+                                            <th>Endereço</th>
+                                            <th>Cidade</th>
+                                            <th>UF</th>
+                                            <th>Curso</th>
+                                            <th>Instituição</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <?php
+                                            foreach ($this->view->alunoListar as $key => $aluno) { ?>
+                                            <tr>
+                                                <td><?php echo $aluno['nome']?></td>
+                                                <td><?php echo $aluno['cpf']?></td>
+                                                <td><?php echo $aluno['dataNascimento']?></td>
+                                                <td><?php echo $aluno['email']?></td>
+                                                <td><?php echo $aluno['celular']?></td>
+                                                <td><?php echo ($aluno['endereco'].", n. ".$aluno['numero']." - ".$aluno['bairro']); ?></td>
+                                                <td><?php echo $aluno['nomeCidade']?></td>
+                                                <td><?php echo $aluno['uf']?></td>
+                                                <td><?php echo $aluno['nomeCurso']?></td>
+                                                <td><?php echo $aluno['nomeInstituicao']?></td>
+                                            </tr>
+                                        <?php
+                                            } ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        <?php } else { ?>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12 col-12 text-center">
+                        Não há alunos cadastrados (ou ativos)
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
+        </div>
+    </div>
+    <br /><br /><br />
+</div>

@@ -48,11 +48,13 @@ CREATE TABLE aluno (
     endereco varchar(90),
     numero tinyint,
     bairro varchar(64),
-    fk_idCidade int(11),
     fk_idCurso tinyint,
+    fk_idCidade int(11),
+    fk_idEstado tinyint,
     PRIMARY KEY (cpf),
+    FOREIGN KEY (fk_idCurso) REFERENCES Curso (idCurso),
     FOREIGN KEY (fk_idCidade) REFERENCES Cidade (idCidade),
-    FOREIGN KEY (fk_idCurso) REFERENCES Curso (idCurso)
+    FOREIGN KEY (fk_idEstado) REFERENCES Estado (idEstado)
 );
 
 INSERT INTO estado (idEstado, nomeEstado, uf) VALUES

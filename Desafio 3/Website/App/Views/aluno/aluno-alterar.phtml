@@ -1,0 +1,165 @@
+<div class="tab-pane" id="abaAlterar" role="tabpanel">
+    <div class="row">
+        <div class="col-md-8 ml-auto mr-auto">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h5 class="card-title">
+                        Alterar aluno
+                    </h5>
+                </div>
+
+                <?php if (!empty($this->view->alunos)) { ?>
+                    <form class="needs-validation" action="/alunoAlterar" method="post" enctype="multipart/form-data" id="cadastrarAluno" novalidate="">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-8 col-12 mr-auto ml-auto">
+                                    <label for="abaAlterarSelAluno">Selecione um aluno para alterar</label>
+                                    <select class="form-control" id="abaAlterarSelAluno">
+                                        <option selected disabled>Selecione</option>
+                                        <?php foreach ($this->view->alunos as $key => $aluno) { ?>
+                                            <option value="<?php echo $aluno['cpf']; ?>" nome="<?php echo $aluno['nome']; ?>" data="<?php echo $aluno['dataNascimento']; ?>" email="<?php echo  $aluno['email']; ?>" celular="<?php echo $aluno['celular']; ?>" endereco="<?php echo $aluno['endereco']; ?>" numero="<?php echo $aluno['numero']; ?>" bairro="<?php echo $aluno['bairro']; ?>" fk_idCidade="<?php echo $aluno['fk_idCidade'] ?>" fk_idEstado="<?php echo $aluno['fk_idEstado'] ?>" fk_idCurso="<?php echo $aluno['fk_idCurso'] ?>">
+                                                <?php echo $aluno['nome']; ?>
+                                            </option>
+                                        <?php
+                                            } ?>
+                                    </select>
+                                    <br />
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-9 col-sm-6 col-12">
+                                    <label>Nome do aluno</label>
+                                    <input id="abaAlterarNome" name="alunoNome" type="text" class="form-control" autocomplete="off" value="" required disabled>
+                                    <div class="invalid-feedback">
+                                        Insira um nome de válido
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-6 col-12">
+                                    <label>CPF</label>
+                                    <input id="abaAlterarCpfInvisivel" name="alunoCpf" type="text" style="display:none">
+                                    <input id="abaAlterarCpf" type="text" class="form-control cpf" placeholder="___.___.___-__" autocomplete="off" value="" required disabled>
+                                    <div class="invalid-feedback">
+                                        Insira um cpf válido
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-md-5 col-sm-6 col-12">
+                                    <label>E-mail</label>
+                                    <input id="abaAlterarEmail" name="alunoEmail" type="email" class="form-control" autocomplete="off" value="" required disabled>
+                                    <div class="invalid-feedback">
+                                        Insira um e-mail válido
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-6 col-12">
+                                    <label>Data de Nascimento</label>
+                                    <input id="abaAlterarData" name="alunoData" type="date" class="form-control dataNascimento" placeholder="__/__/____" autocomplete="off" value="" required disabled>
+                                    <div class="invalid-feedback">
+                                        Insira uma data válida
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-6 col-12">
+                                    <label>Celular</label>
+                                    <input id="abaAlterarCelular" name="alunoCelular" type="text" class="form-control celular" maxlength="15" autocomplete="off" value="" required disabled>
+                                    <div class="invalid-feedback">
+                                        Insira um celular válido
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 col-12">
+                                    <label>Endereço</label>
+                                    <input id="abaAlterarEnderecoLogradouro" name="alunoLogradouro" type="text" class="form-control" autocomplete="off" value="" required disabled>
+                                    <div class="invalid-feedback">
+                                        Insira um endereco válido
+                                    </div>
+                                </div>
+                                <div class="col-md-2 col-sm-6 col-12">
+                                    <label>Número</label>
+                                    <input id="abaAlterarEnderecoNum" name="alunoEnderecoNum" type="text" class="form-control" autocomplete="off" value="" required disabled>
+                                    <div class="invalid-feedback">
+                                        Insira um número válido
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-6 col-12">
+                                    <label>Bairro</label>
+                                    <input id="abaAlterarEnderecoBairro" name="alunoEnderecoBairro" type="text" class="form-control" autocomplete="off" value="" required disabled>
+                                    <div class="invalid-feedback">
+                                        Insira um bairro válido
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 col-12">
+                                    <label>Estado</label>
+                                    <select class="form-control" name="alunoEstado" id="abaAlterarEstado" disabled>
+                                        <option selected disabled>Selecione o estado</option>
+                                        <?php foreach ($this->view->estados as $key => $estado) { ?>
+                                            <option value="<?php echo $estado['idEstado']; ?>" nome="<?php echo $estado['nomeEstado']; ?>" uf="<?php echo $estado['uf']; ?>">
+                                                <?php echo $estado['nomeEstado']; ?>
+                                            </option>
+                                        <?php
+                                            } ?>
+                                    </select>
+                                </div>
+
+                                <div class="col-md-6 col-sm-6 col-12">
+                                    <label>Cidade</label>
+                                    <select class="form-control" name="alunoCidade" id="abaAlterarCidade" required disabled>
+                                        <option selected disabled>Selecione a cidade</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <br />
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 col-12 mr-auto ml-auto">
+                                    <label for="abaAlterarInstituicaoListar">Selecione uma instituição ativa</label>
+                                    <select class="form-control" id="abaAlterarInstituicaoListar" disabled required>
+                                        <option selected disabled>Selecione</option>
+                                        <?php foreach ($this->view->instituicaoAtiva as $key => $instituicao) { ?>
+                                            <option value="<?php echo $instituicao['cnpj']; ?>" nome="<?php echo $instituicao['nome']; ?>" status="<?php echo $instituicao['status']; ?>">
+                                                <?php echo $instituicao['nome']; ?>
+                                            </option>
+                                        <?php
+                                            } ?>
+                                    </select>
+                                    <br />
+                                </div>
+
+                                <div class="col-md-6 col-sm-6 col-12 mr-auto ml-auto">
+                                    <label for="abaAlterarCursoListar">Selecione um curso ativo</label>
+                                    <select class="form-control" name="alunoCurso" id="abaAlterarCursoListar" disabled required>
+                                        <option selected disabled>Selecione</option>
+                                    </select>
+                                    <br />
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <div class="ml-auto mr-auto">
+                                    <button id="btnAlterarAluno" type="submit" class="btn btn-primary btn-round">Alterar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+            </div>
+        <?php } else { ?>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12 col-12 text-center">
+                        Não há alunos cadastrados
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
+        <br/><br/>
+        </div>
+    </div>
+</div>

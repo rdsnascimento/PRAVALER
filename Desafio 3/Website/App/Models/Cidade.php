@@ -17,7 +17,7 @@ class Cidade extends Model {
     }
 
     public function getCidades(){
-        $query = "select * from cidade where fk_idEstado = :fk_idEstado";
+        $query = "select * from cidade where fk_idEstado = :fk_idEstado order by nomeCidade";
         $stmt = $this->db->prepare($query);
         $stmt->bindValue(':fk_idEstado', $this->__get('fk_idEstado'));
         $stmt->execute();
